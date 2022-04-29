@@ -6,6 +6,7 @@ const sass = gulpSass(dartSass);
 import postcss from "gulp-postcss";
 import terser from "gulp-terser";
 import sourcemaps from "gulp-sourcemaps";
+import rename from "gulp-rename";
 import cssnano from "cssnano";
 import autoprefixer from "autoprefixer";
 import browserify from "browserify";
@@ -42,6 +43,8 @@ const css = async (reload) => {
         .on("error", (e) => logger.failed("sass", e))
         .pipe(postcss([autoprefixer(), cssnano()]))
         .on("error", (e) => logger.failed("postcss", e))
+        .pipe(rename(`${FILE_NAME}.css`))
+        .on("error", (e) => logger.failed("rename", e))
         .pipe(dest(PATH.css.dest, { sourcemaps: "." }))
         .on("error", (e) => logger.failed("write", e))
         .on("end", () => {
