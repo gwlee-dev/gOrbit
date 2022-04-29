@@ -1,0 +1,52 @@
+{
+    "name": "orbit_dashboard",
+    "version": "1.0.0",
+    "description": "Orbit Dashboard",
+    "main": "main.js",
+    "scripts": {
+        "watch": "nodemon --watch ./gulpfile.js --exec babel-node ./node_modules/.bin/gulp dev",
+        "build": "nodemon --watch ./gulpfile.js --exec babel-node ./node_modules/.bin/gulp build",
+        "server": "nodemon --watch ./server/server.js --exec babel-node ./server/server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/gwlee-dev/orbit-dashboard.git"
+    },
+    "keywords": [
+        "dashboard"
+    ],
+    "author": "Geonwoo Lee",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/gwlee-dev/orbit-dashboard/issues"
+    },
+    "homepage": "https://github.com/gwlee-dev/orbit-dashboard#readme",
+    "devDependencies": {
+        "@babel/core": "^7.17.7",
+        "@babel/node": "^7.16.8",
+        "@babel/preset-env": "^7.16.11",
+        "@popperjs/core": "^2.11.4",
+        "@prettier/plugin-pug": "^2.0.0",
+        "autoprefixer": "^10.4.4",
+        "babelify": "^10.0.0",
+        "browser-sync": "^2.27.9",
+        "browserify": "^17.0.0",
+        "cssnano": "^5.1.4",
+        "del": "^6.0.0",
+        "express": "^4.17.3",
+        "gulp": "^4.0.2",
+        "gulp-postcss": "^9.0.1",
+        "gulp-sass": "^5.1.0",
+        "gulp-sourcemaps": "^3.0.0",
+        "gulp-terser": "^2.1.0",
+        "gulp-util": "^3.0.8",
+        "morgan": "^1.10.0",
+        "nodemon": "^2.0.16",
+        "postcss": "^8.4.12",
+        "prettier": "^2.6.2",
+        "pug": "^3.0.2",
+        "sass": "^1.49.9",
+        "vinyl-buffer": "^1.0.1",
+        "vinyl-source-stream": "^2.0.0"
+    }
+}
