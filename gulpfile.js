@@ -18,7 +18,7 @@ import sync from "browser-sync";
 // variable set
 const DEST = "dist";
 const SRC = "src";
-const SERVER_PORT = "8080";
+const SERVER_PORT = "8011";
 const FILE_NAME = "orbit";
 
 const PATH = {
@@ -61,7 +61,7 @@ const js = async (reload) => {
         .on("error", (e) => logger.failed("babelify", e))
         .bundle()
         .on("error", (e) => {
-            log(`❌ ${e}`);
+            log(`${e}`);
             logger.failed("", "browserify");
         })
         .pipe(source(`${FILE_NAME}.js`))
@@ -69,9 +69,8 @@ const js = async (reload) => {
         .pipe(sourcemaps.init({ loadMaps: true }))
         .pipe(terser())
         .on("error", (e) => logger.failed("terser", e))
-        .pipe(sourcemaps.write("./"))
-        .pipe(dest(PATH.js.dest))
-        .on("error", (e) => logger.failed("write", e))
+        .pipe(sourcemaps.write("."))
+        .pipe(dest(PATH.js.dest, { sourcemaps: "." }))
         .on("end", (e) => {
             logger.success("JS");
             if (reload == true) {

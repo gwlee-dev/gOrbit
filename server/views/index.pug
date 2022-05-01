@@ -1,10 +1,45 @@
-doctype html
-html(lang="ko")
-    head
-        meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible", content="IE=edge")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        link(rel="stylesheet", href="/assets/css/orbit.css")
-        title Document
-    body 
-        script(src="/assets/js/orbit.js") 
+extends _base
+
+block contents
+    .container-fluid.flex-grow-1.w-100
+        .orbit
+            #orbit-depth-0.orbit-layer
+                .orbit-frame.bg-secondary
+                .orbit-title Solar
+            #orbit-depth-1.orbit-layer
+                .orbit-frame
+                .orbit-wrap
+                    .orbit-inner
+            #item-1.orbit-placer
+                .orbit-radius(style="transform: rotate(0deg)")
+                    .orbit-item
+                        .orbit-frame
+                        .orbit-body(style="transform: rotate(0deg)") Mercury
+            #item-2.orbit-placer
+                .orbit-radius(style="transform: rotate(60deg)")
+                    .orbit-item
+                        .orbit-frame
+                        .orbit-body(style="transform: rotate(-60deg)") Venus
+            #item-3.orbit-placer
+                .orbit-radius(style="transform: rotate(120deg)")
+                    .orbit-item
+                        .orbit-frame
+                        .orbit-body(style="transform: rotate(-120deg)") Earth
+            #item-4.orbit-placer
+                .orbit-radius(style="transform: rotate(180deg)")
+                    .orbit-item
+                        .orbit-frame
+                        .orbit-body(style="transform: rotate(-180deg)") Mars
+            #item-5.orbit-placer
+                .orbit-radius(style="transform: rotate(240deg)")
+                    .orbit-item
+                        .orbit-frame
+                        .orbit-body(style="transform: rotate(-240deg)") Jupiter
+            #item-6.orbit-placer
+                .orbit-radius(style="transform: rotate(300deg)")
+                    .orbit-item
+                        .orbit-frame
+                        .orbit-body(style="transform: rotate(-300deg)") Saturn
+
+block scripts
+    script 

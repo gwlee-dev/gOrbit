@@ -1,0 +1,402 @@
+[
+    {
+        "id": 1,
+        "service_name": "Canada goose",
+        "up": 15,
+        "down": 60,
+        "birth": "1646237721000",
+        "\bweight": 28
+    },
+    {
+        "id": 2,
+        "service_name": "Spotted wood sandpiper",
+        "up": 39,
+        "down": 45,
+        "birth": "1634269377000",
+        "\bweight": 77
+    },
+    {
+        "id": 3,
+        "service_name": "Blue-tongued skink",
+        "up": 74,
+        "down": 31,
+        "birth": "1622915878000",
+        "\bweight": 44
+    },
+    {
+        "id": 4,
+        "service_name": "Kafue flats lechwe",
+        "up": 52,
+        "down": 75,
+        "birth": "1629019533000",
+        "\bweight": 16
+    },
+    {
+        "id": 5,
+        "service_name": "Kinkajou",
+        "up": 21,
+        "down": 82,
+        "birth": "1633463326000",
+        "\bweight": 90
+    },
+    {
+        "id": 6,
+        "service_name": "Short-beaked echidna",
+        "up": 7,
+        "down": 17,
+        "birth": "1642885974000",
+        "\bweight": 63
+    },
+    {
+        "id": 7,
+        "service_name": "Squirrel, arctic ground",
+        "up": 12,
+        "down": 43,
+        "birth": "1623891941000",
+        "\bweight": 37
+    },
+    {
+        "id": 8,
+        "service_name": "Lemur, lesser mouse",
+        "up": 38,
+        "down": 66,
+        "birth": "1634622180000",
+        "\bweight": 11
+    },
+    {
+        "id": 9,
+        "service_name": "Red-cheeked cordon bleu",
+        "up": 18,
+        "down": 71,
+        "birth": "1626326114000",
+        "\bweight": 48
+    },
+    {
+        "id": 10,
+        "service_name": "Lesser double-collared sunbird",
+        "up": 45,
+        "down": 28,
+        "birth": "1642214143000",
+        "\bweight": 15
+    },
+    {
+        "id": 11,
+        "service_name": "Stork, white",
+        "up": 26,
+        "down": 54,
+        "birth": "1631458445000",
+        "\bweight": 50
+    },
+    {
+        "id": 12,
+        "service_name": "Sambar",
+        "up": 61,
+        "down": 100,
+        "birth": "1642495049000",
+        "\bweight": 79
+    },
+    {
+        "id": 13,
+        "service_name": "Blue catfish",
+        "up": 51,
+        "down": 14,
+        "birth": "1624601089000",
+        "\bweight": 35
+    },
+    {
+        "id": 14,
+        "service_name": "Asian water dragon",
+        "up": 51,
+        "down": 36,
+        "birth": "1628727944000",
+        "\bweight": 64
+    },
+    {
+        "id": 15,
+        "service_name": "Badger, american",
+        "up": 32,
+        "down": 48,
+        "birth": "1634036474000",
+        "\bweight": 82
+    },
+    {
+        "id": 16,
+        "service_name": "Sulfur-crested cockatoo",
+        "up": 71,
+        "down": 11,
+        "birth": "1638460787000",
+        "\bweight": 97
+    },
+    {
+        "id": 17,
+        "service_name": "Giraffe",
+        "up": 29,
+        "down": 40,
+        "birth": "1638522427000",
+        "\bweight": 6
+    },
+    {
+        "id": 18,
+        "service_name": "Tinamou, elegant crested",
+        "up": 55,
+        "down": 50,
+        "birth": "1651130826000",
+        "\bweight": 47
+    },
+    {
+        "id": 19,
+        "service_name": "Agile wallaby",
+        "up": 37,
+        "down": 48,
+        "birth": "1630571504000",
+        "\bweight": 90
+    },
+    {
+        "id": 20,
+        "service_name": "Fox, crab-eating",
+        "up": 51,
+        "down": 18,
+        "birth": "1620420954000",
+        "\bweight": 15
+    },
+    {
+        "id": 21,
+        "service_name": "Dolphin, common",
+        "up": 12,
+        "down": 62,
+        "birth": "1630912965000",
+        "\bweight": 14
+    },
+    {
+        "id": 22,
+        "service_name": "Azara's zorro",
+        "up": 69,
+        "down": 27,
+        "birth": "1650599313000",
+        "\bweight": 80
+    },
+    {
+        "id": 23,
+        "service_name": "Blue-faced booby",
+        "up": 41,
+        "down": 46,
+        "birth": "1641063006000",
+        "\bweight": 38
+    },
+    {
+        "id": 24,
+        "service_name": "Eleven-banded armadillo",
+        "up": 78,
+        "down": 3,
+        "birth": "1647051362000",
+        "\bweight": 9
+    },
+    {
+        "id": 25,
+        "service_name": "Jackal, black-backed",
+        "up": 0,
+        "down": 98,
+        "birth": "1647917364000",
+        "\bweight": 5
+    },
+    {
+        "id": 26,
+        "service_name": "Stilt, black-winged",
+        "up": 11,
+        "down": 60,
+        "birth": "1632139682000",
+        "\bweight": 27
+    },
+    {
+        "id": 27,
+        "service_name": "Gila monster",
+        "up": 27,
+        "down": 8,
+        "birth": "1620708167000",
+        "\bweight": 83
+    },
+    {
+        "id": 28,
+        "service_name": "Cobra, cape",
+        "up": 94,
+        "down": 8,
+        "birth": "1644847123000",
+        "\bweight": 16
+    },
+    {
+        "id": 29,
+        "service_name": "Buffalo, african",
+        "up": 46,
+        "down": 38,
+        "birth": "1625467013000",
+        "\bweight": 26
+    },
+    {
+        "id": 30,
+        "service_name": "Snake, racer",
+        "up": 5,
+        "down": 87,
+        "birth": "1648142584000",
+        "\bweight": 32
+    },
+    {
+        "id": 31,
+        "service_name": "Capuchin, black-capped",
+        "up": 5,
+        "down": 48,
+        "birth": "1638178811000",
+        "\bweight": 74
+    },
+    {
+        "id": 32,
+        "service_name": "Zorro, common",
+        "up": 45,
+        "down": 58,
+        "birth": "1640322983000",
+        "\bweight": 87
+    },
+    {
+        "id": 33,
+        "service_name": "Trumpeter, green-winged",
+        "up": 85,
+        "down": 57,
+        "birth": "1629726238000",
+        "\bweight": 48
+    },
+    {
+        "id": 34,
+        "service_name": "Brown antechinus",
+        "up": 69,
+        "down": 43,
+        "birth": "1628938446000",
+        "\bweight": 38
+    },
+    {
+        "id": 35,
+        "service_name": "Bare-faced go away bird",
+        "up": 85,
+        "down": 53,
+        "birth": "1643824267000",
+        "\bweight": 23
+    },
+    {
+        "id": 36,
+        "service_name": "Bleu, red-cheeked cordon",
+        "up": 20,
+        "down": 85,
+        "birth": "1626912046000",
+        "\bweight": 67
+    },
+    {
+        "id": 37,
+        "service_name": "Stork, woolly-necked",
+        "up": 45,
+        "down": 11,
+        "birth": "1636156585000",
+        "\bweight": 0
+    },
+    {
+        "id": 38,
+        "service_name": "Pelican, eastern white",
+        "up": 78,
+        "down": 67,
+        "birth": "1625265381000",
+        "\bweight": 33
+    },
+    {
+        "id": 39,
+        "service_name": "Ovenbird",
+        "up": 27,
+        "down": 40,
+        "birth": "1628704999000",
+        "\bweight": 69
+    },
+    {
+        "id": 40,
+        "service_name": "Whale, killer",
+        "up": 28,
+        "down": 53,
+        "birth": "1630896411000",
+        "\bweight": 51
+    },
+    {
+        "id": 41,
+        "service_name": "Roan antelope",
+        "up": 38,
+        "down": 31,
+        "birth": "1639005226000",
+        "\bweight": 91
+    },
+    {
+        "id": 42,
+        "service_name": "Bird, red-billed tropic",
+        "up": 45,
+        "down": 16,
+        "birth": "1630382397000",
+        "\bweight": 75
+    },
+    {
+        "id": 43,
+        "service_name": "Skimmer, four-spotted",
+        "up": 60,
+        "down": 47,
+        "birth": "1622313139000",
+        "\bweight": 59
+    },
+    {
+        "id": 44,
+        "service_name": "Slender-billed cockatoo",
+        "up": 84,
+        "down": 23,
+        "birth": "1622555532000",
+        "\bweight": 68
+    },
+    {
+        "id": 45,
+        "service_name": "Hoary marmot",
+        "up": 1,
+        "down": 5,
+        "birth": "1649365794000",
+        "\bweight": 3
+    },
+    {
+        "id": 46,
+        "service_name": "Eastern box turtle",
+        "up": 74,
+        "down": 89,
+        "birth": "1620958058000",
+        "\bweight": 6
+    },
+    {
+        "id": 47,
+        "service_name": "Turtle, long-necked",
+        "up": 91,
+        "down": 7,
+        "birth": "1623295058000",
+        "\bweight": 77
+    },
+    {
+        "id": 48,
+        "service_name": "Black-throated butcher bird",
+        "up": 27,
+        "down": 41,
+        "birth": "1627467479000",
+        "\bweight": 87
+    },
+    {
+        "id": 49,
+        "service_name": "Cat, ringtail",
+        "up": 35,
+        "down": 29,
+        "birth": "1630479533000",
+        "\bweight": 46
+    },
+    {
+        "id": 50,
+        "service_name": "Silver-backed fox",
+        "up": 92,
+        "down": 57,
+        "birth": "1644577461000",
+        "\bweight": 56
+    }
+]

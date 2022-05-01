@@ -1,0 +1,100 @@
+@import "variables";
+
+.orbit {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.orbit-layer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.orbit-title, .orbit-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.orbit-frame {
+    width: 100%;
+    border: $orbit-trajectory-width solid $orbit-trajectory-color;
+    opacity: 50%;
+}
+
+.orbit-title, .orbit-wrap {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.orbit-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.orbit-frame {
+    border-radius: 50%;
+    &::before {
+        content: "";
+        display: block;
+        width: 100%;
+        padding-top: 100%;
+    }
+}
+
+.orbit-placer {
+    position: absolute;
+    z-index: 3000;
+    bottom: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+}
+
+.orbit-radius {
+    position: relative;
+    height: 9rem;
+    transform-origin: bottom center
+}
+
+.orbit-item {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 4rem;
+    transform: translate(-50%, -50%);
+}
+
+.orbit-body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+#orbit-depth-0 {
+    width: 8rem;
+    z-index: 2999;
+    .orbit-frame {
+        border: none;
+    }
+}
+
+#orbit-depth-1 {
+    width: 18rem;
+    z-index: 2998;
+}
+
+#item1 .orbit-item {
+    width: 6rem;
+}
