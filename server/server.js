@@ -19,8 +19,9 @@ const fakeDB = () => {
     const dataJson = JSON.parse(dataFile);
     const range = dataJson.length + 1;
     const target = Math.floor(Math.random() * range);
-    dataJson.splice(target, 1);
-    return JSON.stringify(dataJson);
+    console.log(target);
+    // dataJson.splice(target, 10);
+    return dataJson;
 };
 
 const apiController = async (req, res) => {
