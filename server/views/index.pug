@@ -14,8 +14,7 @@ block scripts
             base_class: "orbit",
             base_radius: 5,
             base_amount: 6,
-            update_interval: 1000,
-            divide_between: false,
+            update_interval: 3000,
             use_fetch: true,
             fetch_href: "/post",
             fetch_method: "post",
@@ -26,17 +25,17 @@ block scripts
                     WARN: "cpu-warning",
                     CRITICAL: "cpu-critical",
                 },
-                ram: {
-                    NORMAL: "ram-normal",
-                    WARN: "ram-warning",
-                    CRITICAL: "ram-critical",
+                memory: {
+                    NORMAL: "mem-normal",
+                    WARN: "mem-warning",
+                    CRITICAL: "mem-critical",
                 },
                 disk: {
                     NORMAL: "disk-normal",
                     WARN: "disk-warning",
                     CRITICAL: "disk-critical",
                 },
-                sever: {
+                server: {
                     NORMAL: "server-normal",
                     ABNORMAL: "server-abnormal",
                     ALTERED: "server-altered",

@@ -9,7 +9,7 @@ const orbitInitFunc = (options) => {
     gOrbit.options.FETCH_HREF = options.fetch_href;
     gOrbit.options.FETCH_METHOD = options.fetch_method;
     gOrbit.options.ON_CLICK = options.on_click;
-    gOrbit.options.DIVIDE_BETWEEN = options.divide_between;
+    gOrbit.options.CLASS_MAP = options.class_map;
 
     // Create DOM Elements
     gOrbit.elements.orbit = document.querySelector(
@@ -204,6 +204,10 @@ const orbitSetDepth = () => {
             targetItem.classList.add(`${gOrbit.class.item}-lg`);
         }
 
+        const item = target.querySelector(`.${gOrbit.class.item}`);
+
+        Object.keys(gOrbit.options.CLASS_MAP).forEach((key) => {});
+
         target.classList.forEach((className) => {
             if (/^orbit-depth-/.test(className)) {
                 target.classList.remove(className);
@@ -254,11 +258,27 @@ const orbitDashboard = {
         BASE_RADIUS: 5,
         BASE_AMOUNT: 6,
         UPDATE_INTERVAL: 1000,
-        DIVIDE_BETWEEN: false,
         USE_FETCH: true,
         FETCH_HREF: "/api",
         FETCH_METHOD: "get",
         ON_CLICK: "",
+        CLASS_MAP: {
+            cpu: {
+                NORMAL: "cpu-normal",
+                WARN: "cpu-warning",
+                CRITICAL: "cpu-critical",
+            },
+            memory: {
+                NORMAL: "mem-normal",
+                WARN: "mem-warning",
+                CRITICAL: "mem-critical",
+            },
+            disk: {
+                NORMAL: "disk-normal",
+                WARN: "disk-warning",
+                CRITICAL: "disk-critical",
+            },
+        },
     },
     elements: {
         orbit: "",

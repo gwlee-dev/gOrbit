@@ -17,7 +17,6 @@ const fakeDB = () => {
         "utf-8"
     );
     const dataJson = JSON.parse(dataFile);
-    console.log(target);
     const innerData = dataJson.serviceData;
     const range = innerData.length + 1;
     const target = Math.floor(Math.random() * range);
@@ -37,9 +36,14 @@ app.get("/get", apiController);
 
 app.get("/", async (req, res) => res.render("index"));
 
-app.listen(
-    PORT,
-    console.log(
-        `\n\n\n===============================\nServer Listening on: http://localhost:${PORT}`
-    )
-);
+const listen = () => {
+    app.listen(
+        PORT,
+        console.log(
+            `\n\n\n===============================\nServer Listening on: http://localhost:${PORT}`
+        )
+    );
+};
+
+console.log("server will be start in 3000ms..");
+setTimeout(listen, 3000);

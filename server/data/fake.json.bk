@@ -1,405 +1,404 @@
 {
     "serviceData": [
         {
-            "name": 1,
-            "up": 15,
-            "down": 60,
-            "birth": "1646237721000",
-            "execCnt": 28,
-            "clickEvent": "alert('test')"
+            "name": "bpudsey0",
+            "cpu": "NORMAL",
+            "memory": "WARN",
+            "disk": "NORMAL",
+            "server": "NORMAL",
+            "execCnt": 384
         },
         {
-            "name": 2,
-            "up": 39,
-            "down": 45,
-            "birth": "1634269377000",
-            "execCnt": 77,
-            "clickEvent": "alert('test')"
+            "name": "vvanderlinde1",
+            "cpu": "CRITICAL",
+            "memory": "CRITICAL",
+            "disk": "WARN",
+            "server": "ABNORMAL",
+            "execCnt": 398
         },
         {
-            "name": 3,
-            "up": 74,
-            "down": 31,
-            "birth": "1622915878000",
-            "execCnt": 44,
-            "clickEvent": "alert('test')"
+            "name": "rkealey2",
+            "cpu": "NORMAL",
+            "memory": "CRITICAL",
+            "disk": "WARN",
+            "server": "DISCARDED",
+            "execCnt": 190
         },
         {
-            "name": 4,
-            "up": 52,
-            "down": 75,
-            "birth": "1629019533000",
-            "execCnt": 16,
-            "clickEvent": "alert('test')"
+            "name": "ncarr3",
+            "cpu": "CRITICAL",
+            "memory": "CRITICAL",
+            "disk": "WARN",
+            "server": "ALTERED",
+            "execCnt": 229
         },
         {
-            "name": 5,
-            "up": 21,
-            "down": 82,
-            "birth": "1633463326000",
-            "execCnt": 90,
-            "clickEvent": "alert('test')"
+            "name": "bashwood4",
+            "cpu": "CRITICAL",
+            "memory": "CRITICAL",
+            "disk": "CRITICAL",
+            "server": "ALTERED",
+            "execCnt": 190
         },
         {
-            "name": 6,
-            "up": 7,
-            "down": 17,
-            "birth": "1642885974000",
-            "execCnt": 63,
-            "clickEvent": "alert('test')"
+            "name": "rsharpless5",
+            "cpu": "WARN",
+            "memory": "CRITICAL",
+            "disk": "WARN",
+            "server": "DISCARDED",
+            "execCnt": 105
         },
         {
-            "name": 7,
-            "up": 12,
-            "down": 43,
-            "birth": "1623891941000",
-            "execCnt": 37,
-            "clickEvent": "alert('test')"
+            "name": "croan6",
+            "cpu": "NORMAL",
+            "memory": "WARN",
+            "disk": "WARN",
+            "server": "DISCARDED",
+            "execCnt": 387
         },
         {
-            "name": 8,
-            "up": 38,
-            "down": 66,
-            "birth": "1634622180000",
-            "execCnt": 11,
-            "clickEvent": "alert('test')"
+            "name": "wbenito7",
+            "cpu": "WARN",
+            "memory": "NORMAL",
+            "disk": "CRITICAL",
+            "server": "DISCARDED",
+            "execCnt": 130
         },
         {
-            "name": 9,
-            "up": 18,
-            "down": 71,
-            "birth": "1626326114000",
-            "execCnt": 48,
-            "clickEvent": "alert('test')"
+            "name": "cdanilovic8",
+            "cpu": "WARN",
+            "memory": "CRITICAL",
+            "disk": "CRITICAL",
+            "server": "DISCARDED",
+            "execCnt": 351
         },
         {
-            "name": 10,
-            "up": 45,
-            "down": 28,
-            "birth": "1642214143000",
-            "execCnt": 15,
-            "clickEvent": "alert('test')"
+            "name": "btinghill9",
+            "cpu": "NORMAL",
+            "memory": "NORMAL",
+            "disk": "CRITICAL",
+            "server": "DISCARDED",
+            "execCnt": 103
         },
         {
-            "name": 11,
-            "up": 26,
-            "down": 54,
-            "birth": "1631458445000",
-            "execCnt": 50,
-            "clickEvent": "alert('test')"
+            "name": "bgiraudata",
+            "cpu": "NORMAL",
+            "memory": "WARN",
+            "disk": "WARN",
+            "server": "NORMAL",
+            "execCnt": 263
         },
         {
-            "name": 12,
-            "up": 61,
-            "down": 100,
-            "birth": "1642495049000",
-            "execCnt": 79,
-            "clickEvent": "alert('test')"
+            "name": "jtugmanb",
+            "cpu": "WARN",
+            "memory": "CRITICAL",
+            "disk": "WARN",
+            "server": "DISCARDED",
+            "execCnt": 170
         },
         {
-            "name": 13,
-            "up": 51,
-            "down": 14,
-            "birth": "1624601089000",
-            "execCnt": 35,
-            "clickEvent": "alert('test')"
+            "name": "sshoorbrookec",
+            "cpu": "WARN",
+            "memory": "WARN",
+            "disk": "WARN",
+            "server": "ALTERED",
+            "execCnt": 360
         },
         {
-            "name": 14,
-            "up": 51,
-            "down": 36,
-            "birth": "1628727944000",
-            "execCnt": 64,
-            "clickEvent": "alert('test')"
+            "name": "szupod",
+            "cpu": "NORMAL",
+            "memory": "CRITICAL",
+            "disk": "NORMAL",
+            "server": "ALTERED",
+            "execCnt": 274
         },
         {
-            "name": 15,
-            "up": 32,
-            "down": 48,
-            "birth": "1634036474000",
-            "execCnt": 82,
-            "clickEvent": "alert('test')"
+            "name": "atrewmane",
+            "cpu": "CRITICAL",
+            "memory": "WARN",
+            "disk": "CRITICAL",
+            "server": "ABNORMAL",
+            "execCnt": 273
         },
         {
-            "name": 16,
-            "up": 71,
-            "down": 11,
-            "birth": "1638460787000",
-            "execCnt": 97,
-            "clickEvent": "alert('test')"
+            "name": "mkenanf",
+            "cpu": "WARN",
+            "memory": "NORMAL",
+            "disk": "NORMAL",
+            "server": "DISCARDED",
+            "execCnt": 380
         },
         {
-            "name": 17,
-            "up": 29,
-            "down": 40,
-            "birth": "1638522427000",
-            "execCnt": 6,
-            "clickEvent": "alert('test')"
+            "name": "jdowsong",
+            "cpu": "CRITICAL",
+            "memory": "CRITICAL",
+            "disk": "CRITICAL",
+            "server": "DISCARDED",
+            "execCnt": 143
         },
         {
-            "name": 18,
-            "up": 55,
-            "down": 50,
-            "birth": "1651130826000",
-            "execCnt": 47,
-            "clickEvent": "alert('test')"
+            "name": "brutiglianoh",
+            "cpu": "NORMAL",
+            "memory": "CRITICAL",
+            "disk": "CRITICAL",
+            "server": "NORMAL",
+            "execCnt": 360
         },
         {
-            "name": 19,
-            "up": 37,
-            "down": 48,
-            "birth": "1630571504000",
-            "execCnt": 90,
-            "clickEvent": "alert('test')"
+            "name": "braffi",
+            "cpu": "CRITICAL",
+            "memory": "CRITICAL",
+            "disk": "CRITICAL",
+            "server": "DISCARDED",
+            "execCnt": 231
         },
         {
-            "name": 20,
-            "up": 51,
-            "down": 18,
-            "birth": "1620420954000",
-            "execCnt": 15,
-            "clickEvent": "alert('test')"
+            "name": "nwilborej",
+            "cpu": "WARN",
+            "memory": "CRITICAL",
+            "disk": "CRITICAL",
+            "server": "DISCARDED",
+            "execCnt": 130
         },
         {
-            "name": 21,
-            "up": 12,
-            "down": 62,
-            "birth": "1630912965000",
-            "execCnt": 14,
-            "clickEvent": "alert('test')"
+            "name": "mpocklingtonk",
+            "cpu": "WARN",
+            "memory": "NORMAL",
+            "disk": "CRITICAL",
+            "server": "DISCARDED",
+            "execCnt": 325
         },
         {
-            "name": 22,
-            "up": 69,
-            "down": 27,
-            "birth": "1650599313000",
-            "execCnt": 80,
-            "clickEvent": "alert('test')"
+            "name": "gstockingsl",
+            "cpu": "NORMAL",
+            "memory": "NORMAL",
+            "disk": "WARN",
+            "server": "DISCARDED",
+            "execCnt": 253
         },
         {
-            "name": 23,
-            "up": 41,
-            "down": 46,
-            "birth": "1641063006000",
-            "execCnt": 38,
-            "clickEvent": "alert('test')"
+            "name": "ajolym",
+            "cpu": "NORMAL",
+            "memory": "NORMAL",
+            "disk": "NORMAL",
+            "server": "NORMAL",
+            "execCnt": 293
         },
         {
-            "name": 24,
-            "up": 78,
-            "down": 3,
-            "birth": "1647051362000",
-            "execCnt": 9,
-            "clickEvent": "alert('test')"
+            "name": "jcarlinon",
+            "cpu": "NORMAL",
+            "memory": "CRITICAL",
+            "disk": "CRITICAL",
+            "server": "DISCARDED",
+            "execCnt": 298
         },
         {
-            "name": 25,
-            "up": 0,
-            "down": 98,
-            "birth": "1647917364000",
-            "execCnt": 5,
-            "clickEvent": "alert('test')"
+            "name": "grosenqvisto",
+            "cpu": "WARN",
+            "memory": "CRITICAL",
+            "disk": "CRITICAL",
+            "server": "ALTERED",
+            "execCnt": 278
         },
         {
-            "name": 26,
-            "up": 11,
-            "down": 60,
-            "birth": "1632139682000",
-            "execCnt": 27,
-            "clickEvent": "alert('test')"
+            "name": "amayhewp",
+            "cpu": "CRITICAL",
+            "memory": "WARN",
+            "disk": "WARN",
+            "server": "ABNORMAL",
+            "execCnt": 161
         },
         {
-            "name": 27,
-            "up": 27,
-            "down": 8,
-            "birth": "1620708167000",
-            "execCnt": 83,
-            "clickEvent": "alert('test')"
+            "name": "mburdfieldq",
+            "cpu": "CRITICAL",
+            "memory": "CRITICAL",
+            "disk": "CRITICAL",
+            "server": "DISCARDED",
+            "execCnt": 305
         },
         {
-            "name": 28,
-            "up": 94,
-            "down": 8,
-            "birth": "1644847123000",
-            "execCnt": 16,
-            "clickEvent": "alert('test')"
+            "name": "bgilesr",
+            "cpu": "CRITICAL",
+            "memory": "NORMAL",
+            "disk": "WARN",
+            "server": "DISCARDED",
+            "execCnt": 175
         },
         {
-            "name": 29,
-            "up": 46,
-            "down": 38,
-            "birth": "1625467013000",
-            "execCnt": 26,
-            "clickEvent": "alert('test')"
+            "name": "goldknowes",
+            "cpu": "WARN",
+            "memory": "CRITICAL",
+            "disk": "CRITICAL",
+            "server": "NORMAL",
+            "execCnt": 235
         },
         {
-            "name": 30,
-            "up": 5,
-            "down": 87,
-            "birth": "1648142584000",
-            "execCnt": 32,
-            "clickEvent": "alert('test')"
+            "name": "rpertt",
+            "cpu": "CRITICAL",
+            "memory": "NORMAL",
+            "disk": "CRITICAL",
+            "server": "ALTERED",
+            "execCnt": 351
         },
         {
-            "name": 31,
-            "up": 5,
-            "down": 48,
-            "birth": "1638178811000",
-            "execCnt": 74,
-            "clickEvent": "alert('test')"
+            "name": "wcarlanu",
+            "cpu": "CRITICAL",
+            "memory": "CRITICAL",
+            "disk": "CRITICAL",
+            "server": "DISCARDED",
+            "execCnt": 266
         },
         {
-            "name": 32,
-            "up": 45,
-            "down": 58,
-            "birth": "1640322983000",
-            "execCnt": 87,
-            "clickEvent": "alert('test')"
+            "name": "fpasslerv",
+            "cpu": "CRITICAL",
+            "memory": "WARN",
+            "disk": "CRITICAL",
+            "server": "DISCARDED",
+            "execCnt": 110
         },
         {
-            "name": 33,
-            "up": 85,
-            "down": 57,
-            "birth": "1629726238000",
-            "execCnt": 48,
-            "clickEvent": "alert('test')"
+            "name": "hbeckettw",
+            "cpu": "WARN",
+            "memory": "WARN",
+            "disk": "CRITICAL",
+            "server": "DISCARDED",
+            "execCnt": 334
         },
         {
-            "name": 34,
-            "up": 69,
-            "down": 43,
-            "birth": "1628938446000",
-            "execCnt": 38,
-            "clickEvent": "alert('test')"
+            "name": "ahawksleex",
+            "cpu": "WARN",
+            "memory": "CRITICAL",
+            "disk": "CRITICAL",
+            "server": "ALTERED",
+            "execCnt": 253
         },
         {
-            "name": 35,
-            "up": 85,
-            "down": 53,
-            "birth": "1643824267000",
-            "execCnt": 23,
-            "clickEvent": "alert('test')"
+            "name": "amarjoribanksy",
+            "cpu": "CRITICAL",
+            "memory": "CRITICAL",
+            "disk": "CRITICAL",
+            "server": "ALTERED",
+            "execCnt": 110
         },
         {
-            "name": 36,
-            "up": 20,
-            "down": 85,
-            "birth": "1626912046000",
-            "execCnt": 67,
-            "clickEvent": "alert('test')"
+            "name": "mdrinkalez",
+            "cpu": "CRITICAL",
+            "memory": "WARN",
+            "disk": "WARN",
+            "server": "ABNORMAL",
+            "execCnt": 251
         },
         {
-            "name": 37,
-            "up": 45,
-            "down": 11,
-            "birth": "1636156585000",
-            "execCnt": 0,
-            "clickEvent": "alert('test')"
+            "name": "vlongstreet10",
+            "cpu": "CRITICAL",
+            "memory": "WARN",
+            "disk": "CRITICAL",
+            "server": "ALTERED",
+            "execCnt": 250
         },
         {
-            "name": 38,
-            "up": 78,
-            "down": 67,
-            "birth": "1625265381000",
-            "execCnt": 33,
-            "clickEvent": "alert('test')"
+            "name": "bheddy11",
+            "cpu": "CRITICAL",
+            "memory": "WARN",
+            "disk": "CRITICAL",
+            "server": "NORMAL",
+            "execCnt": 199
         },
         {
-            "name": 39,
-            "up": 27,
-            "down": 40,
-            "birth": "1628704999000",
-            "execCnt": 69,
-            "clickEvent": "alert('test')"
+            "name": "moxtaby12",
+            "cpu": "WARN",
+            "memory": "WARN",
+            "disk": "CRITICAL",
+            "server": "ABNORMAL",
+            "execCnt": 397
         },
         {
-            "name": 40,
-            "up": 28,
-            "down": 53,
-            "birth": "1630896411000",
-            "execCnt": 51,
-            "clickEvent": "alert('test')"
+            "name": "cseldner13",
+            "cpu": "NORMAL",
+            "memory": "WARN",
+            "disk": "NORMAL",
+            "server": "ALTERED",
+            "execCnt": 281
         },
         {
-            "name": 41,
-            "up": 38,
-            "down": 31,
-            "birth": "1639005226000",
-            "execCnt": 91,
-            "clickEvent": "alert('test')"
+            "name": "sblandamore14",
+            "cpu": "NORMAL",
+            "memory": "NORMAL",
+            "disk": "CRITICAL",
+            "server": "DISCARDED",
+            "execCnt": 213
         },
         {
-            "name": 42,
-            "up": 45,
-            "down": 16,
-            "birth": "1630382397000",
-            "execCnt": 75,
-            "clickEvent": "alert('test')"
+            "name": "jsutherden15",
+            "cpu": "CRITICAL",
+            "memory": "CRITICAL",
+            "disk": "CRITICAL",
+            "server": "DISCARDED",
+            "execCnt": 368
         },
         {
-            "name": 43,
-            "up": 60,
-            "down": 47,
-            "birth": "1622313139000",
-            "execCnt": 59,
-            "clickEvent": "alert('test')"
+            "name": "dephgrave16",
+            "cpu": "WARN",
+            "memory": "CRITICAL",
+            "disk": "CRITICAL",
+            "server": "ALTERED",
+            "execCnt": 240
         },
         {
-            "name": 44,
-            "up": 84,
-            "down": 23,
-            "birth": "1622555532000",
-            "execCnt": 68,
-            "clickEvent": "alert('test')"
+            "name": "mbosence17",
+            "cpu": "WARN",
+            "memory": "CRITICAL",
+            "disk": "WARN",
+            "server": "DISCARDED",
+            "execCnt": 287
         },
         {
-            "name": 45,
-            "up": 1,
-            "down": 5,
-            "birth": "1649365794000",
-            "execCnt": 3,
-            "clickEvent": "alert('test')"
+            "name": "aprobart18",
+            "cpu": "CRITICAL",
+            "memory": "NORMAL",
+            "disk": "CRITICAL",
+            "server": "DISCARDED",
+            "execCnt": 207
         },
         {
-            "name": 46,
-            "up": 74,
-            "down": 89,
-            "birth": "1620958058000",
-            "execCnt": 6,
-            "clickEvent": "alert('test')"
+            "name": "choutby19",
+            "cpu": "WARN",
+            "memory": "NORMAL",
+            "disk": "NORMAL",
+            "server": "ALTERED",
+            "execCnt": 148
         },
         {
-            "name": 47,
-            "up": 91,
-            "down": 7,
-            "birth": "1623295058000",
-            "execCnt": 77,
-            "clickEvent": "alert('test')"
+            "name": "aperryman1a",
+            "cpu": "NORMAL",
+            "memory": "WARN",
+            "disk": "WARN",
+            "server": "ABNORMAL",
+            "execCnt": 382
         },
         {
-            "name": 48,
-            "up": 27,
-            "down": 41,
-            "birth": "1627467479000",
-            "execCnt": 87,
-            "clickEvent": "alert('test')"
+            "name": "amacdaid1b",
+            "cpu": "CRITICAL",
+            "memory": "NORMAL",
+            "disk": "NORMAL",
+            "server": "ABNORMAL",
+            "execCnt": 215
         },
         {
-            "name": 49,
-            "up": 35,
-            "down": 29,
-            "birth": "1630479533000",
-            "execCnt": 46,
-            "clickEvent": "alert('test')"
+            "name": "gdebischop1c",
+            "cpu": "NORMAL",
+            "memory": "CRITICAL",
+            "disk": "CRITICAL",
+            "server": "DISCARDED",
+            "execCnt": 133
         },
         {
-            "name": 50,
-            "up": 92,
-            "down": 57,
-            "birth": "1644577461000",
-            "execCnt": 56,
-            "clickEvent": "alert('test')"
+            "name": "jsmetoun1d",
+            "cpu": "NORMAL",
+            "memory": "NORMAL",
+            "disk": "CRITICAL",
+            "server": "DISCARDED",
+            "execCnt": 176
         }
-    ],
-    "dummy": "yummy"
+    ]
 }
