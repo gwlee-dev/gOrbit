@@ -37,12 +37,17 @@ const orbitInitFunc = (options) => {
     gOrbit.class.body = `${gOrbit.options.BASE_CLASS}-body`;
     gOrbit.elements.body.classList.add(gOrbit.class.body);
 
+    gOrbit.elements.status = document.createElement("div");
+    gOrbit.class.status = `${gOrbit.options.BASE_CLASS}-status`;
+    gOrbit.elements.status.classList.add(gOrbit.class.status);
+
     gOrbit.elements.layer = document.createElement("div");
     gOrbit.class.layer = `${gOrbit.options.BASE_CLASS}-layer`;
     gOrbit.elements.layer.classList.add(gOrbit.class.layer);
 
     gOrbit.elements.item.appendChild(gOrbit.elements.frame);
     gOrbit.elements.item.appendChild(gOrbit.elements.body);
+    gOrbit.elements.item.appendChild(gOrbit.elements.status);
     gOrbit.elements.radius.appendChild(gOrbit.elements.item);
     gOrbit.elements.placer.appendChild(gOrbit.elements.radius);
 
@@ -152,7 +157,11 @@ const orbitSetPosition = async (max) => {
             element.style.height = `${currentHeight}rem`;
             element.style.transform = `rotate(${currentAngle}deg)`;
             const bodyElement = element.querySelector(`.${gOrbit.class.body}`);
+            const statusElement = element.querySelector(
+                `.${gOrbit.class.status}`
+            );
             bodyElement.style.transform = `rotate(-${currentAngle}deg)`;
+            statusElement.style.transform = `rotate(-${currentAngle}deg)`;
             currentAngle += eachAngle;
         }
     }
@@ -204,10 +213,10 @@ const orbitSetDepth = () => {
             targetItem.classList.add(`${gOrbit.class.item}-lg`);
         }
 
-        const item = target.querySelector(`.${gOrbit.class.item}`);
+        const item = target.querySelector(`.${gOrbit.class.status}`);
         const map = gOrbit.options.CLASS_MAP;
         Object.keys(map).forEach((key) => {
-            const statusClassName = `${gOrbit.options.BASE_CLASS}-${key}`;
+            const statusClassName = `${gOrbit.options.BASE_CLASS}-key-${key}`;
             let status = item.querySelector(`.${statusClassName}`);
             if (!status) {
                 status = document.createElement("div");
@@ -216,7 +225,7 @@ const orbitSetDepth = () => {
                 status = item.querySelector(`.${statusClassName}`);
             } else {
                 status.classList.forEach((className) => {
-                    if (/^orbit-status-/.test(className)) {
+                    if (/^orbit-value-/.test(className)) {
                         status.classList.remove(className);
                     }
                 });
@@ -224,7 +233,7 @@ const orbitSetDepth = () => {
             Object.keys(map[key]).forEach((stat) => {
                 if (element[key] == stat) {
                     status.classList.add(
-                        `${gOrbit.options.BASE_CLASS}-status-${map[key][stat]}`
+                        `${gOrbit.options.BASE_CLASS}-value-${map[key][stat]}`
                     );
                 }
             });
