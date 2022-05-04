@@ -205,8 +205,30 @@ const orbitSetDepth = () => {
         }
 
         const item = target.querySelector(`.${gOrbit.class.item}`);
-
-        Object.keys(gOrbit.options.CLASS_MAP).forEach((key) => {});
+        const map = gOrbit.options.CLASS_MAP;
+        Object.keys(map).forEach((key) => {
+            const statusClassName = `${gOrbit.options.BASE_CLASS}-${key}`;
+            let status = item.querySelector(`.${statusClassName}`);
+            if (!status) {
+                status = document.createElement("div");
+                status.classList.add(statusClassName);
+                item.appendChild(status);
+                status = item.querySelector(`.${statusClassName}`);
+            } else {
+                status.classList.forEach((className) => {
+                    if (/^orbit-status-/.test(className)) {
+                        status.classList.remove(className);
+                    }
+                });
+            }
+            Object.keys(map[key]).forEach((stat) => {
+                if (element[key] == stat) {
+                    status.classList.add(
+                        `${gOrbit.options.BASE_CLASS}-status-${map[key][stat]}`
+                    );
+                }
+            });
+        });
 
         target.classList.forEach((className) => {
             if (/^orbit-depth-/.test(className)) {

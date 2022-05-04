@@ -4,7 +4,7 @@
             "name": "bcarlozzi0",
             "cpu": "CRITICAL",
             "memory": "CRITICAL",
-            "disk": "CRITICAL",
+            "disk": "NORMAL",
             "server": "DISCARDED",
             "execCnt": 999
         },
