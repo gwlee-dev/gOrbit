@@ -10,6 +10,14 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    border: 1px solid #adb5bd;
+    border-radius: 50%;
+    &::before {
+        content: "";
+        display: block;
+        width: 100%;
+        padding-top: 100%;
+    }
 }
 
 .orbit-title, .orbit-body {
@@ -31,7 +39,7 @@
     background-color: #ffffff;
 }
 
-.orbit-title, .orbit-wrap {
+.orbit-title {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -39,26 +47,16 @@
     left: 0;
 }
 
-.orbit-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
 .orbit-placer {
     position: absolute;
     z-index: 3000;
     bottom: 50%;
     left: 50%;
-    width: 100%;
-    transform: translateX(-50%);
-    display: flex;
-    justify-content: center;
+    width: 0;
 }
 
 .orbit-radius {
     position: relative;
-    // height: 9rem;
     transform: rotate(0deg);
     transform-origin: bottom center;
     transition: all 0.5s ease;
@@ -68,7 +66,6 @@
     position: absolute;
     top: 0;
     left: 50%;
-    width: 7rem;
     text-align: center;
     font-size: 12px;
     transform: translate(-50%, -50%);
@@ -107,6 +104,7 @@
     top: 0;
     left: 0;
     transition: all 0.5s ease;
+    z-index: 2000;
 }
 
 .placing {
@@ -115,13 +113,13 @@
 }
 
 .orbit-center-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 6rem;
-    z-index: 2999;
+    z-index: 2000;
     .orbit-frame {
         border: none;
     }
-}
-
-.orbit-circle-1 {
-    width: 14rem;
 }

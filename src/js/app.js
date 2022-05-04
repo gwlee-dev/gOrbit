@@ -1,12 +1,15 @@
 const orbitInitFunc = (options) => {
     // Variable Set
+    gOrbit.options.DEBUG = options.debug;
     gOrbit.options.BASE_CLASS = options.base_class;
     gOrbit.options.BASE_RADIUS = options.base_radius;
     gOrbit.options.BASE_AMOUNT = options.base_amount;
     gOrbit.options.UPDATE_INTERVAL = options.update_interval;
     gOrbit.options.USE_FETCH = options.use_fetch;
     gOrbit.options.FETCH_HREF = options.fetch_href;
-    gOrbit.options.DEBUG = options.debug;
+    gOrbit.options.FETCH_METHOD = options.fetch_method;
+    gOrbit.options.ON_CLICK = options.on_click;
+    gOrbit.options.DIVIDE_BETWEEN = options.divide_between;
 
     // Create DOM Elements
     gOrbit.elements.orbit = document.querySelector(
@@ -34,11 +37,10 @@ const orbitInitFunc = (options) => {
     gOrbit.class.body = `${gOrbit.options.BASE_CLASS}-body`;
     gOrbit.elements.body.classList.add(gOrbit.class.body);
 
-    gOrbit.elements.layer = document.createElement("layer");
+    gOrbit.elements.layer = document.createElement("div");
     gOrbit.class.layer = `${gOrbit.options.BASE_CLASS}-layer`;
     gOrbit.elements.layer.classList.add(gOrbit.class.layer);
 
-    gOrbit.elements.layer.appendChild(gOrbit.elements.frame);
     gOrbit.elements.item.appendChild(gOrbit.elements.frame);
     gOrbit.elements.item.appendChild(gOrbit.elements.body);
     gOrbit.elements.radius.appendChild(gOrbit.elements.item);
@@ -53,17 +55,9 @@ const orbitInitFunc = (options) => {
             )
         );
         for (const element of gOrbit.dataList) {
-            orbitPlaceItems(element);
+            orbitPlaceItems(element, "init");
         }
         orbitSetPosition(orbitSetDepth());
-    };
-
-    const orbitDrawCircle = (depth, currentHeight) => {
-        const clone = layer.cloneNode(true);
-        const cloneIdString = `${gOrbit.options.BASE_CLASS}-${layerClass}-${depth}`;
-        clone.id = cloneIdString;
-        orbit.appendChild(clone);
-        const element = document.querySelector(`#${cloneIdString}`);
     };
 
     orbitInitData();
@@ -73,9 +67,15 @@ const orbitInitFunc = (options) => {
     }
 };
 
-const orbitGetData = (USE_FETCH, FETCH_HREF) => {
-    if (USE_FETCH == true) {
-        const response = fetch(FETCH_HREF);
+const orbitGetData = () => {
+    if (
+        gOrbit.options.USE_FETCH == true &&
+        gOrbit.options.FETCH_METHOD == "post"
+    ) {
+        const response = fetch(gOrbit.options.FETCH_HREF, { method: "POST" });
+        return response.then((res) => res.json());
+    } else if (gOrbit.options.USE_FETCH == true) {
+        const response = fetch(gOrbit.options.FETCH_HREF);
         return response.then((res) => res.json());
     } else {
         return gOrbit.data;
@@ -83,7 +83,6 @@ const orbitGetData = (USE_FETCH, FETCH_HREF) => {
 };
 
 const orbitSortData = (data) => {
-    gOrbit.options.DEBUG && console.log(data);
     const dataArray = data.serviceData;
     const sortedData = dataArray.sort((a, b) => {
         return b.execCnt - a.execCnt;
@@ -94,9 +93,12 @@ const orbitSortData = (data) => {
 const orbitPlaceItems = (element) => {
     const clone = gOrbit.elements.placer.cloneNode(true);
     clone.id = `${gOrbit.options.BASE_CLASS}-${element.name}`;
-    // clone.setAttribute("onclick", element.clickEvent);
     const inner = clone.querySelector(`.${gOrbit.class.body}`);
     inner.innerHTML = element.name;
+    inner.setAttribute("onclick", gOrbit.options.ON_CLICK);
+    inner.name = `${element.name}`;
+    gOrbit.options.ON_CLICK &&
+        inner.setAttribute("onclick", gOrbit.options.ON_CLICK);
     gOrbit.elements.orbit.appendChild(clone);
 };
 
@@ -104,6 +106,7 @@ const orbitUpdate = async () => {
     const newData = orbitSortData(
         await orbitGetData(gOrbit.options.USE_FETCH, gOrbit.options.FETCH_HREF)
     );
+    gOrbit.options.DEBUG == true && console.log(newData);
     let newDataKeys = [];
     for (const element of newData) {
         newDataKeys.push(element.name);
@@ -116,15 +119,18 @@ const orbitUpdate = async () => {
 
     let addedItems = newDataKeys.filter((x) => !oldDataKeys.includes(x));
     let removedItems = oldDataKeys.filter((x) => !newDataKeys.includes(x));
+    gOrbit.options.DEBUG == true &&
+        console.log(
+            `Added ${addedItems.length} / Removed ${removedItems.length}`
+        );
     await addedItems.forEach((element) => {
-        const currentItem = newData.find((x) => x.id === element);
-        orbitPlaceItems(currentItem);
+        const currentItem = newData.find((x) => x.name === element);
+        orbitPlaceItems(currentItem, "add");
     });
     await removedItems.forEach((element) => {
-        const target = orbit.querySelector(
+        const target = gOrbit.elements.orbit.querySelector(
             `#${gOrbit.options.BASE_CLASS}-${element}`
         );
-        // target.remove();
         target.parentNode.removeChild(target);
     });
 
@@ -132,14 +138,14 @@ const orbitUpdate = async () => {
 };
 
 const orbitSetPosition = async (max) => {
-    for (let depth = 1; depth <= max; depth++) {
+    for (let depth = 1; depth < max; ) {
         const elements = gOrbit.elements.orbit.querySelectorAll(
             `.${gOrbit.class.placer}.${gOrbit.options.BASE_CLASS}-depth-${depth} .${gOrbit.class.radius}`
         );
         const elementAmount = elements.length;
         const eachAngle = 360 / elementAmount;
         const currentHeight = gOrbit.options.BASE_RADIUS * depth + depth;
-        // orbitDrawCircle(depth, currentHeight);
+        orbitDrawCircle(depth++, currentHeight);
         let currentAngle = 0;
         for (const element of elements) {
             setTimeout(orbitTransition.placing, 0, element);
@@ -152,10 +158,25 @@ const orbitSetPosition = async (max) => {
     }
 };
 
+const orbitDrawCircle = (depth, currentHeight) => {
+    if (depth == 1) {
+        const circles = gOrbit.elements.orbit.querySelectorAll(
+            `.${gOrbit.class.layer}`
+        );
+        circles.forEach((element) => {
+            element.parentNode.removeChild(element);
+        });
+    }
+    const clone = gOrbit.elements.layer.cloneNode(true);
+    const cloneIdString = `${gOrbit.options.BASE_CLASS}-${gOrbit.class.layer}-${depth}`;
+    clone.id = cloneIdString;
+    clone.style.width = `${currentHeight * 2}rem`;
+    gOrbit.elements.orbit.appendChild(clone);
+};
+
 const orbitSetDepth = () => {
     let depth = 1;
     let idx = 1;
-
     let newDataWeights = [];
     for (const element of gOrbit.dataList) {
         newDataWeights.push(element.execCnt);
@@ -189,6 +210,7 @@ const orbitSetDepth = () => {
             }
         });
         target.classList.remove(`${gOrbit.options.BASE_CLASS}-depth-*`);
+
         target.classList.add(`${gOrbit.options.BASE_CLASS}-depth-${depth}`);
         if (idx++ == depth * gOrbit.options.BASE_AMOUNT) {
             idx = 0;
@@ -232,8 +254,11 @@ const orbitDashboard = {
         BASE_RADIUS: 5,
         BASE_AMOUNT: 6,
         UPDATE_INTERVAL: 1000,
+        DIVIDE_BETWEEN: false,
         USE_FETCH: true,
         FETCH_HREF: "/api",
+        FETCH_METHOD: "get",
+        ON_CLICK: "",
     },
     elements: {
         orbit: "",
@@ -253,6 +278,7 @@ const orbitDashboard = {
         body: "",
         layer: "",
     },
+    obj: "",
 };
 
 (function (window) {

@@ -17,18 +17,23 @@ const fakeDB = () => {
         "utf-8"
     );
     const dataJson = JSON.parse(dataFile);
-    const range = dataJson.length + 1;
-    const target = Math.floor(Math.random() * range);
     console.log(target);
-    // dataJson.splice(target, 10);
-    return dataJson;
+    const innerData = dataJson.serviceData;
+    const range = innerData.length + 1;
+    const target = Math.floor(Math.random() * range);
+    innerData.splice(target, 10);
+    const editedData = {
+        serviceData: innerData,
+    };
+    return editedData;
 };
 
 const apiController = async (req, res) => {
     res.json(fakeDB());
 };
 
-app.get("/api", apiController);
+app.post("/post", apiController);
+app.get("/get", apiController);
 
 app.get("/", async (req, res) => res.render("index"));
 
