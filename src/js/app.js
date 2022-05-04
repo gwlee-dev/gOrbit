@@ -37,7 +37,7 @@ const orbitInitFunc = (options) => {
     gOrbit.class.body = `${gOrbit.options.BASE_CLASS}-body`;
     gOrbit.elements.body.classList.add(gOrbit.class.body);
 
-    gOrbit.elements.name = document.createElement("div");
+    gOrbit.elements.name = document.createElement("span");
     gOrbit.class.name = `${gOrbit.options.BASE_CLASS}-name`;
     gOrbit.elements.name.classList.add(gOrbit.class.name);
 

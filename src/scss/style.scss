@@ -28,7 +28,7 @@
 
 .orbit-frame {
     width: 100%;
-    border: 1px solid #adb5bd;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 50%;
     &::before {
         content: "";
@@ -173,6 +173,14 @@
 
 [class$=value-normal] {
     &::before {
-        background-color: green;
+        background-color: white;
     }
+}
+
+.orbit-name {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0.25rem;
 }
