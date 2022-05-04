@@ -124,15 +124,18 @@
     }
 }
 
+.orbit-status {
+    z-index: -1;
+}
+
 [class^=orbit-key] {
     position: absolute;
     bottom: 50%;
-    height: 100%;
+    height: 70%;
     width: 100%;
     left: 0;
     padding: 1rem;
-    // filter: blur(1rem);
-    z-index: -1;
+    filter: blur(0.5rem);
     transform-origin: bottom center;
     &::before {
         content: "";
@@ -140,6 +143,7 @@
         width: 100%;
         padding-top: 100%;
         border-radius: 50%;
+        transition: all 0.5s ease;
     }
 }
 

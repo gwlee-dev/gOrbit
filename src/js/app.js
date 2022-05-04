@@ -37,6 +37,10 @@ const orbitInitFunc = (options) => {
     gOrbit.class.body = `${gOrbit.options.BASE_CLASS}-body`;
     gOrbit.elements.body.classList.add(gOrbit.class.body);
 
+    gOrbit.elements.name = document.createElement("div");
+    gOrbit.class.name = `${gOrbit.options.BASE_CLASS}-name`;
+    gOrbit.elements.name.classList.add(gOrbit.class.name);
+
     gOrbit.elements.status = document.createElement("div");
     gOrbit.class.status = `${gOrbit.options.BASE_CLASS}-status`;
     gOrbit.elements.status.classList.add(gOrbit.class.status);
@@ -45,6 +49,7 @@ const orbitInitFunc = (options) => {
     gOrbit.class.layer = `${gOrbit.options.BASE_CLASS}-layer`;
     gOrbit.elements.layer.classList.add(gOrbit.class.layer);
 
+    gOrbit.elements.body.appendChild(gOrbit.elements.name);
     gOrbit.elements.item.appendChild(gOrbit.elements.frame);
     gOrbit.elements.item.appendChild(gOrbit.elements.body);
     gOrbit.elements.item.appendChild(gOrbit.elements.status);
@@ -99,7 +104,8 @@ const orbitPlaceItems = (element) => {
     const clone = gOrbit.elements.placer.cloneNode(true);
     clone.id = `${gOrbit.options.BASE_CLASS}-${element.name}`;
     const inner = clone.querySelector(`.${gOrbit.class.body}`);
-    inner.innerHTML = element.name;
+    const name = inner.querySelector(`.${gOrbit.class.name}`);
+    name.innerHTML = element.name;
     inner.setAttribute("onclick", gOrbit.options.ON_CLICK);
     inner.name = `${element.name}`;
     gOrbit.options.ON_CLICK &&
@@ -319,6 +325,7 @@ const orbitDashboard = {
         frame: "",
         body: "",
         layer: "",
+        name: "",
     },
     class: {
         orbit: "",
@@ -328,6 +335,7 @@ const orbitDashboard = {
         frame: "",
         body: "",
         layer: "",
+        name: "",
     },
     obj: "",
 };
