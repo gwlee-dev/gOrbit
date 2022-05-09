@@ -52,6 +52,7 @@ const orbitInitFunc = (options) => {
     gOrbit.elements.alert = document.createElement("div");
     gOrbit.class.alert = `${gOrbit.options.BASE_CLASS}-alert`;
     gOrbit.elements.alert.classList.add(gOrbit.class.alert);
+    gOrbit.elements.alert.classList.add("placing");
 
     gOrbit.elements.body.appendChild(gOrbit.elements.name);
     gOrbit.elements.item.appendChild(gOrbit.elements.frame);
@@ -95,13 +96,42 @@ const orbitGetData = async () => {
 };
 
 const orbitPrintError = (msg, err) => {
-    const clone = gOrbit.elements.alert.cloneNode(true);
+    let errMsg = "오류가 발생했습니다.";
+    let errDetail = "";
+
     if (msg == "init") {
-        clone.innerHTML = `Orbit을 초기화하는 동안 오류가 발생했습니다.&nbsp;&nbsp;(${err})`;
+        errMsg = "Orbit을 초기화하는 동안 오류가 발생했습니다.";
     }
-    gOrbit.elements.orbit.appendChild(clone);
-    const element = document.querySelector();
+    if (msg == "new") {
+        errMsg = "데이터를 갱신하는 동안 오류가 발생했습니다.";
+    }
+
+    if (err.message == "Unexpected end of JSON input") {
+        errDetail = "파싱 오류";
+    }
+
+    if (err.message == "Cannot read properties of undefined (reading 'sort')") {
+        errDetail = "데이터 오류";
+    }
+
+    let element = gOrbit.elements.orbit.querySelector(`.${gOrbit.class.alert}`);
+    const errString = `${errMsg}&nbsp;&nbsp;( ${errDetail} )`;
+    if (element) {
+        element.innerHTML = errString;
+    } else {
+        const clone = gOrbit.elements.alert.cloneNode(true);
+        clone.innerHTML = errString;
+        gOrbit.elements.orbit.appendChild(clone);
+        element = gOrbit.elements.orbit.querySelector(`.${gOrbit.class.alert}`);
+    }
     setTimeout(orbitTransition.placing, 0, element);
+};
+
+const orbitRemoveError = () => {
+    const element = gOrbit.elements.orbit.querySelector(
+        `.${gOrbit.class.alert}`
+    );
+    element && gOrbit.elements.orbit.removeChild(element);
 };
 
 const orbitSortData = (data) => {
@@ -127,7 +157,13 @@ const orbitPlaceItems = (element) => {
 
 const orbitUpdate = async () => {
     const { USE_FETCH, FETCH_HREF, DEBUG, BASE_CLASS } = gOrbit.options;
-    const newData = orbitSortData(await orbitGetData(USE_FETCH, FETCH_HREF));
+    let newData;
+    try {
+        newData = orbitSortData(await orbitGetData(USE_FETCH, FETCH_HREF));
+        orbitRemoveError();
+    } catch (err) {
+        orbitPrintError("new", err);
+    }
     DEBUG == true && console.log(newData);
     let newDataKeys = [];
     for (const element of newData) {
@@ -171,7 +207,11 @@ const orbitSetPosition = async (max) => {
         orbitDrawCircle(depth++, currentHeight);
         let currentAngle = 0;
         for (const element of elements) {
-            setTimeout(orbitTransition.placing, 0, element);
+            setTimeout(
+                orbitTransition.placing,
+                0,
+                element.querySelector(`.${gOrbit.class.item}`)
+            );
             element.style.height = `${currentHeight}rem`;
             element.style.transform = `rotate(${currentAngle}deg)`;
             const bodyElement = element.querySelector(`.${gOrbit.class.body}`);
@@ -276,16 +316,8 @@ const orbitSetDepth = () => {
 };
 
 const orbitTransition = {
-    placing: (element) => {
-        element
-            .querySelector(`.${gOrbit.class.item}`)
-            .classList.remove("placing");
-    },
-    removing: (element) => {
-        element
-            .querySelector(`.${gOrbit.class.item}`)
-            .classList.remove("removing");
-    },
+    placing: (element) => element.classList.remove("placing"),
+    removing: (element) => element.classList.remove("removing"),
 };
 
 const orbitListenFunc = (input) => {
