@@ -173,16 +173,14 @@
 
 [class$=value-normal]:not(.orbit-key-server) {
     &::before {
-        background-color: #0d6efd;
+        background-color: #0dcaf0;
     }
 }
 
 .orbit-name {
     display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
     padding: 0.25rem;
+    word-break: break-all;
 }
 
 .orbit-alert {
