@@ -30,7 +30,7 @@ block scripts
             base_amount: 6,
 
             // fetch 시도 간격 지정 (ms)
-            update_interval: 1000000,
+            update_interval: 1025431000,
 
             // fetch 사용 여부 (boolean)
             use_fetch: true,
@@ -63,9 +63,13 @@ block scripts
                     CRITICAL: "critical",
                 },
                 server: {
-                    NORMAL: "normal",
+                    NORMAL: "normal", // class_binding이 item이므로
                     ABNORMAL: "abnormal",
                 },
+            },
+
+            binding_specify: {
+                server: "body",
             },
 
             // use_fetch가 false일 경우 사용할 데이터

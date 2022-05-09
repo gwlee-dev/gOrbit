@@ -12,6 +12,7 @@ const orbitInitFunc = (options) => {
     gOrbit.options.FETCH_METHOD = options.fetch_method;
     gOrbit.options.ON_CLICK = options.on_click;
     gOrbit.options.CLASS_MAP = options.class_map;
+    gOrbit.options.BINDING_SPECIFY = options.binding_specify;
     const { USE_FETCH, FETCH_HREF, UPDATE_INTERVAL, DEBUG } = gOrbit.options;
 
     DEBUG && console.log(">> Importing Complete");
@@ -154,7 +155,6 @@ const orbitPrintError = (msg, err, code) => {
         errMsg = "데이터를 갱신하는 동안 오류가 발생했습니다.";
     }
 
-    if ()
     if (err.message == "Unexpected end of JSON input") {
         errDetail = "파싱 오류";
     }
@@ -189,7 +189,6 @@ const orbitRemoveError = () => {
 };
 
 const orbitSortData = (data) => {
-    const { DEBUG } = gOrbit.options;
     const dataArray = data.serviceData;
     const sortedData = dataArray.sort((a, b) => {
         return b.execCnt - a.execCnt;
@@ -319,7 +318,10 @@ const orbitDrawCircle = (depth, currentHeight) => {
 };
 
 const orbitSetDepth = () => {
-    const { DEBUG, BASE_CLASS, CLASS_MAP, BASE_AMOUNT } = gOrbit.options;
+    const { DEBUG, BASE_CLASS, CLASS_MAP, BINDING_SPECIFY, BASE_AMOUNT } =
+        gOrbit.options;
+    DEBUG && console.log("Setting Item Depths..");
+
     let depth = 1;
     let idx = 1;
     let newDataWeights = [];
@@ -364,32 +366,46 @@ const orbitSetDepth = () => {
         const item = target.querySelector(`.${gOrbit.class.status}`);
         const map = CLASS_MAP;
         Object.keys(map).forEach((key) => {
-            const statusClassName = `${BASE_CLASS}-key-${key}`;
-            let status = item.querySelector(`.${statusClassName}`);
-            item.classList.forEach((className) => {
+            if (BINDING_SPECIFY[key]) {
+                const bindingClass = `${BASE_CLASS}-${BINDING_SPECIFY[key]}`;
+                const binding = target.querySelector(`.${bindingClass}`);
+                binding.classList.forEach((className) => {
+                    if (/^orbit-specify-/.test(className)) {
+                        binding.classList.remove(className);
+                    }
+                });
+                Object.keys(map[key]).forEach((stat) => {
+                    if (element[key] == stat) {
+                        const statusClassName = `orbit-specify-${key}-${map[key][stat]}`;
+                        binding.classList.add(statusClassName);
+                    }
+                });
+            } else {
+                let status = item.querySelector(`.${statusClassName}`);
+                const statusClassName = `${BASE_CLASS}-key-${key}`;
+                item.classList.forEach((className) => {
                     if (/^orbit-value-/.test(className)) {
                         status.classList.remove(className);
                     }
                 });
-            if (!status) {
-                status = document.createElement("div");
-                status.classList.add(statusClassName);
-                item.appendChild(status);
-                status = item.querySelector(`.${statusClassName}`);
-            } else {
-                status.classList.forEach((className) => {
-                    if (/^orbit-value-/.test(className)) {
-                        status.classList.remove(className);
+                if (!status) {
+                    status = document.createElement("div");
+                    status.classList.add(statusClassName);
+                    item.appendChild(status);
+                    status = item.querySelector(`.${statusClassName}`);
+                } else {
+                    status.classList.forEach((className) => {
+                        if (/^orbit-value-/.test(className)) {
+                            status.classList.remove(className);
+                        }
+                    });
+                }
+                Object.keys(map[key]).forEach((stat) => {
+                    if (element[key] == stat) {
+                        status.classList.add(`orbit-value-${map[key][stat]}`);
                     }
                 });
             }
-            Object.keys(map[key]).forEach((stat) => {
-                if (element[key] == stat) {
-                    status.classList.add(
-                        `${BASE_CLASS}-value-${map[key][stat]}`
-                    );
-                }
-            });
         });
 
         target.classList.forEach((className) => {
@@ -405,6 +421,8 @@ const orbitSetDepth = () => {
             depth++;
         }
     });
+    DEBUG && console.log(">> Setting Complete");
+
     return depth + 1;
 };
 
