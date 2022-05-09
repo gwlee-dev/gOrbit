@@ -18,7 +18,7 @@ block scripts
         // orbit 초기화 및 옵션 가져오기 (함수 실행 시점은 관계없음, 최초 1회 이후 재실행 금지)
         gOrbit.init({
             // 새로운 데이터를 받았을때 콘솔에 로그 표시 여부 (boolean)
-            debug: false,
+            debug: true,
 
             // 모든 객체의 클래스명 prefix 지정
             base_class: "orbit",
@@ -30,7 +30,7 @@ block scripts
             base_amount: 6,
 
             // fetch 시도 간격 지정 (ms)
-            update_interval: 1000,
+            update_interval: 1000000,
 
             // fetch 사용 여부 (boolean)
             use_fetch: true,
@@ -63,10 +63,8 @@ block scripts
                     CRITICAL: "critical",
                 },
                 server: {
-                    NORMAL: "server-normal",
-                    ABNORMAL: "server-abnormal",
-                    ALTERED: "server-altered",
-                    DISCARDED: "server-discarded",
+                    NORMAL: "normal",
+                    ABNORMAL: "abnormal",
                 },
             },
 
@@ -77,12 +75,11 @@ block scripts
         // init 함수 실행 이후 옵션 override 필요시:
         // gOrbit.options.[옵션] = "값";
 
+        // init 이후 변경 가능한 옵션:
         // gOrbit.options.DEBUG
-        // gOrbit.options.BASE_CLASS
         // gOrbit.options.BASE_RADIUS
         // gOrbit.options.BASE_AMOUNT
-        // gOrbit.options.UPDATE_INTERVAL
-        // gOrbit.options.USE_FETCH
+        // gOrbit.options.USE_FETCH (DATA 옵션 지정 필수)
         // gOrbit.options.FETCH_HREF
         // gOrbit.options.FETCH_METHOD
         // gOrbit.options.ON_CLICK

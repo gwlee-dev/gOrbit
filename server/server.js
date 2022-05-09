@@ -23,6 +23,26 @@ const fakeDB = () => {
     const range = innerData.length + 1;
     const target = Math.floor(Math.random() * range);
     innerData.splice(target, 10);
+    innerData.forEach((obj) => {
+        Object.keys(obj).forEach((field) => {
+            if (field != "name" && field != "server" && field != "execCnt") {
+                const randInt = Math.floor(Math.random() * 3);
+                if (randInt == 1) {
+                    obj[field] = "CRITICAL";
+                }
+                if (randInt == 2) {
+                    obj[field] = "WARN";
+                }
+                if (randInt == 3) {
+                    obj[field] = "NORMAL";
+                }
+            }
+            if (field == "execCnt") {
+                const randInt = Math.floor(Math.random() * 100);
+                obj[field] = randInt;
+            }
+        });
+    });
     const editedData = {
         serviceData: innerData,
     };

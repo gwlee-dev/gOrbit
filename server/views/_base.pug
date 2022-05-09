@@ -41,33 +41,32 @@ html(lang="ko")
                     #topNav.collapse.navbar-collapse
                         ul.navbar-nav
                             li.nav-item
-                                a#refresh-btn.nav-link(
+                                a.nav-link(
                                     role="button",
                                     onclick="gOrbit.update()"
                                 ) Refresh
                             li.nav-item
-                                a#api-btn.nav-link(role="button", href="/get") DummyAPI(GET)
+                                a.nav-link(role="button", href="/get") DummyAPI(GET)
                             li.nav-item
-                                a#add-btn.nav-link(
+                                a.nav-link(
                                     role="button",
                                     onclick="fetch('/api/on');"
                                 ) SERVER ON
                             li.nav-item
-                                a#add-btn.nav-link(
+                                a.nav-link(
                                     role="button",
                                     onclick="fetch('/api/off/200');"
                                 ) SERVER OFF (200)
                             li.nav-item
-                                a#add-btn.nav-link(
+                                a.nav-link(
                                     role="button",
                                     onclick="fetch('/api/off/404');"
                                 ) SERVER OFF (404)
                             li.nav-item
-                                a#add-btn.nav-link(
+                                a.nav-link(
                                     role="button",
                                     onclick="fetch('/api/off/500');"
                                 ) SERVER OFF (500)
-
         block contents
 
         script(

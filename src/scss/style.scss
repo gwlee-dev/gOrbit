@@ -59,7 +59,7 @@
     position: relative;
     transform: rotate(0deg);
     transform-origin: bottom center;
-    transition: all 0.5s ease;
+    transition: height 0.5s ease, transform 0.5s ease;
 }
 
 .orbit-item {
@@ -69,29 +69,29 @@
     text-align: center;
     font-size: 12px;
     transform: translate(-50%, -50%);
-    transition: all 0.5s ease;
+    transition: opacity 0.5s ease;
 }
 
 .orbit-item-lg {
-    width: 5rem !important;
+    width: 5rem;
     line-height: 1.25rem;
     font-size: 0.95rem;
 }
 
 .orbit-item-md {
-    width: 5rem !important;
+    width: 5rem;
     line-height: 1rem;
     font-size: 0.8rem;
 }
 
 .orbit-item-sm {
-    width: 4.4rem !important;
+    width: 4.4rem;
     line-height: 0.9rem;
     font-size: 0.7rem;
 }
 
 .orbit-item-xs {
-    width: 3.3rem !important;
+    width: 3.3rem;
     line-height: 0.7rem;
     font-size: 0.6rem;
     margin: 0.5rem;
@@ -103,7 +103,7 @@
     height: 100%;
     top: 0;
     left: 0;
-    transition: all 0.5s ease;
+    transition: transform 0.5s ease;
     z-index: 998;
 }
 
@@ -128,7 +128,7 @@
     z-index: -1;
 }
 
-[class^=orbit-key] {
+[class^=orbit-key]:not(.orbit-key-server) {
     position: absolute;
     bottom: 50%;
     height: 70%;
@@ -143,7 +143,7 @@
         width: 100%;
         padding-top: 100%;
         border-radius: 50%;
-        transition: all 0.5s ease;
+        transition: background-color 0.5s ease;
     }
 }
 
@@ -159,21 +159,21 @@
     transform: rotate(-60deg);
 }
 
-[class$=value-critical] {
+[class$=value-critical]:not(.orbit-key-server) {
     &::before {
-        background-color: red;
+        background-color: #dc3545;
     }
 }
 
-[class$=value-warning] {
+[class$=value-warning]:not(.orbit-key-server) {
     &::before {
-        background-color: orange;
+        background-color: #ffc107;
     }
 }
 
-[class$=value-normal] {
+[class$=value-normal]:not(.orbit-key-server) {
     &::before {
-        background-color: white;
+        background-color: #0d6efd;
     }
 }
 
@@ -188,12 +188,13 @@
 .orbit-alert {
     position: relative;
     padding: 1rem 1rem;
-    margin: 0.5rem auto;
+    margin-left: auto;
+    margin-right: auto;
     border: 1px solid transparent;
     border-radius: 0.5rem;
     color: #842029;
     background-color: #f8d7da;
     border-color: #f5c2c7;
     width: fit-content;
-    transition: all 0.5s ease;
+    transition: opacity 1s ease, margin-top 0.5s ease;
 }

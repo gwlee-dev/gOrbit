@@ -1,5 +1,7 @@
 const orbitInitFunc = (options) => {
-    // Variable Set
+    options.debug == true && console.log("[ Initializing ]");
+
+    options.debug == true && console.log("Importing Options..");
     gOrbit.options.DEBUG = options.debug;
     gOrbit.options.BASE_CLASS = options.base_class;
     gOrbit.options.BASE_RADIUS = options.base_radius;
@@ -10,8 +12,11 @@ const orbitInitFunc = (options) => {
     gOrbit.options.FETCH_METHOD = options.fetch_method;
     gOrbit.options.ON_CLICK = options.on_click;
     gOrbit.options.CLASS_MAP = options.class_map;
+    const { USE_FETCH, FETCH_HREF, UPDATE_INTERVAL, DEBUG } = gOrbit.options;
 
-    // Create DOM Elements
+    DEBUG && console.log(">> Importing Complete");
+
+    DEBUG && console.log("Creating DOM Elements..");
     gOrbit.elements.orbit = document.querySelector(
         `.${gOrbit.options.BASE_CLASS}`
     );
@@ -60,34 +65,77 @@ const orbitInitFunc = (options) => {
     gOrbit.elements.item.appendChild(gOrbit.elements.status);
     gOrbit.elements.radius.appendChild(gOrbit.elements.item);
     gOrbit.elements.placer.appendChild(gOrbit.elements.radius);
+    DEBUG && console.log(">> Creating Complete");
 
     // Initialize
-    const { USE_FETCH, FETCH_HREF, UPDATE_INTERVAL } = gOrbit.options;
+
+    const orbitDebugPanel = () => {
+        gOrbit.elements.debug = document.createElement("ul");
+        gOrbit.elements.debug.setAttribute(
+            "style",
+            "position: absolute; top: 1rem; left: 0;"
+        );
+
+        gOrbit.elements.debugTitle = document.createElement("h5");
+        gOrbit.elements.debugTitle.setAttribute(
+            "style",
+            "margin-left: -1.5rem; font-weight: bold; border-top: 1px solid #000; width: 10rem; padding-top: 0.5rem;"
+        );
+        gOrbit.elements.debugTitle.innerHTML = "DEBUG MODE";
+        gOrbit.elements.debugMin = document.createElement("li");
+        gOrbit.elements.debugMax = document.createElement("li");
+        gOrbit.elements.debugLv1 = document.createElement("li");
+        gOrbit.elements.debugLv2 = document.createElement("li");
+        gOrbit.elements.debugLv3 = document.createElement("li");
+
+        gOrbit.elements.debug.appendChild(gOrbit.elements.debugTitle);
+        gOrbit.elements.debug.appendChild(gOrbit.elements.debugMin);
+        gOrbit.elements.debug.appendChild(gOrbit.elements.debugMax);
+        gOrbit.elements.debug.appendChild(gOrbit.elements.debugLv1);
+        gOrbit.elements.debug.appendChild(gOrbit.elements.debugLv2);
+        gOrbit.elements.debug.appendChild(gOrbit.elements.debugLv3);
+
+        gOrbit.elements.orbit.appendChild(gOrbit.elements.debug);
+    };
+
+    DEBUG && orbitDebugPanel();
+
     const orbitInitData = async () => {
+        let newData;
         try {
-            gOrbit.dataList = orbitSortData(
-                await orbitGetData(USE_FETCH, FETCH_HREF)
-            );
+            DEBUG && console.log("Fetching..");
+            newData = await orbitGetData(USE_FETCH, FETCH_HREF);
+            DEBUG && console.log(">> Fetching Complete");
         } catch (err) {
+            DEBUG && console.log(">> Error occurred on Initial Fetching");
+            orbitPrintError("init", err);
+        }
+
+        try {
+            DEBUG && console.log("Sorting..");
+            gOrbit.dataList = await orbitSortData(newData);
+            DEBUG && console.log(">> Sorting Complete");
+        } catch (err) {
+            DEBUG && console.log(">> Error occurred on Initial Sorting");
             orbitPrintError("init", err);
         }
         for (const element of gOrbit.dataList) {
             orbitPlaceItems(element, "init");
         }
         orbitSetPosition(orbitSetDepth());
+        DEBUG && console.log(">>>>> INITIALIZED\n\n\n");
     };
 
     orbitInitData();
 
-    if (USE_FETCH == true) {
-        setInterval(gOrbit.update, UPDATE_INTERVAL);
-    }
+    USE_FETCH && setInterval(gOrbit.update, UPDATE_INTERVAL);
 };
 
 const orbitGetData = async () => {
     const { USE_FETCH, FETCH_HREF, FETCH_METHOD } = gOrbit.options;
-    if (USE_FETCH == true) {
+    if (USE_FETCH) {
         const response = await fetch(FETCH_HREF, { method: FETCH_METHOD });
+        gOrbit.lastFetchStatus = await response.status;
         const json = await response.json();
         return json;
     } else {
@@ -95,7 +143,7 @@ const orbitGetData = async () => {
     }
 };
 
-const orbitPrintError = (msg, err) => {
+const orbitPrintError = (msg, err, code) => {
     let errMsg = "오류가 발생했습니다.";
     let errDetail = "";
 
@@ -106,12 +154,18 @@ const orbitPrintError = (msg, err) => {
         errMsg = "데이터를 갱신하는 동안 오류가 발생했습니다.";
     }
 
+    if ()
     if (err.message == "Unexpected end of JSON input") {
         errDetail = "파싱 오류";
     }
-
     if (err.message == "Cannot read properties of undefined (reading 'sort')") {
         errDetail = "데이터 오류";
+    }
+    if (
+        err.message ==
+        "Cannot read properties of undefined (reading 'serviceData')"
+    ) {
+        errDetail = "서버/데이터 오류";
     }
 
     let element = gOrbit.elements.orbit.querySelector(`.${gOrbit.class.alert}`);
@@ -124,7 +178,7 @@ const orbitPrintError = (msg, err) => {
         gOrbit.elements.orbit.appendChild(clone);
         element = gOrbit.elements.orbit.querySelector(`.${gOrbit.class.alert}`);
     }
-    setTimeout(orbitTransition.placing, 0, element);
+    setTimeout(orbitTransition.placing, 500, element);
 };
 
 const orbitRemoveError = () => {
@@ -135,6 +189,7 @@ const orbitRemoveError = () => {
 };
 
 const orbitSortData = (data) => {
+    const { DEBUG } = gOrbit.options;
     const dataArray = data.serviceData;
     const sortedData = dataArray.sort((a, b) => {
         return b.execCnt - a.execCnt;
@@ -157,32 +212,51 @@ const orbitPlaceItems = (element) => {
 
 const orbitUpdate = async () => {
     const { USE_FETCH, FETCH_HREF, DEBUG, BASE_CLASS } = gOrbit.options;
-    let newData;
+    DEBUG && console.log("[ Update Data ]");
+
+    let fetchData;
     try {
-        newData = orbitSortData(await orbitGetData(USE_FETCH, FETCH_HREF));
+        DEBUG && console.log("Fetching..");
+        fetchData = await orbitGetData(USE_FETCH, FETCH_HREF);
+        DEBUG && console.log(">> Fetching Complete");
         orbitRemoveError();
     } catch (err) {
+        DEBUG && console.log(">> Error occurred on Fetching");
         orbitPrintError("new", err);
     }
-    DEBUG == true && console.log(newData);
+
+    let sortData;
+    try {
+        DEBUG && console.log("Sorting..");
+        sortData = await orbitSortData(fetchData);
+        DEBUG && console.log(">> Sorting Complete");
+        orbitRemoveError();
+    } catch (err) {
+        DEBUG && console.log(">> Error occurred on Sorting");
+        orbitPrintError("new", err);
+    }
+
+    DEBUG && console.log("Comparing..");
     let newDataKeys = [];
-    for (const element of newData) {
+    for (const element of sortData) {
         newDataKeys.push(element.name);
     }
     let oldDataKeys = [];
     for (const element of gOrbit.dataList) {
         oldDataKeys.push(element.name);
     }
-    gOrbit.dataList = newData;
+
+    gOrbit.dataList = sortData;
 
     let addedItems = newDataKeys.filter((x) => !oldDataKeys.includes(x));
     let removedItems = oldDataKeys.filter((x) => !newDataKeys.includes(x));
-    DEBUG == true &&
+    DEBUG &&
         console.log(
-            `Added ${addedItems.length} / Removed ${removedItems.length}`
+            `>> Comparing Complete: Added ${addedItems.length} / Removed ${removedItems.length}`
         );
+
     await addedItems.forEach((element) => {
-        const currentItem = newData.find((x) => x.name === element);
+        const currentItem = sortData.find((x) => x.name === element);
         orbitPlaceItems(currentItem, "add");
     });
     await removedItems.forEach((element) => {
@@ -192,7 +266,9 @@ const orbitUpdate = async () => {
         target.parentNode.removeChild(target);
     });
 
-    orbitSetPosition(gOrbit.set.depth());
+    gOrbit.set.position(gOrbit.set.depth());
+
+    DEBUG && console.log(">>>>> CYCLE END\n\n\n");
 };
 
 const orbitSetPosition = async (max) => {
@@ -243,6 +319,7 @@ const orbitDrawCircle = (depth, currentHeight) => {
 };
 
 const orbitSetDepth = () => {
+    const { DEBUG, BASE_CLASS, CLASS_MAP, BASE_AMOUNT } = gOrbit.options;
     let depth = 1;
     let idx = 1;
     let newDataWeights = [];
@@ -255,14 +332,25 @@ const orbitSetDepth = () => {
     const level1 = weightAverage * 1;
     const level2 = weightAverage * 2;
     const level3 = weightAverage * 3;
+    if (DEBUG) {
+        gOrbit.elements.debugMax.innerHTML = `MAX: ${maxWeight}`;
+        gOrbit.elements.debugMin.innerHTML = `MIN: ${minWeight}`;
+        gOrbit.elements.debugLv1.innerHTML = `Lv1: ${level1}`;
+        gOrbit.elements.debugLv2.innerHTML = `Lv2: ${level2}`;
+        gOrbit.elements.debugLv3.innerHTML = `Lv3: ${level3}`;
+    }
 
     gOrbit.dataList.forEach((element) => {
-        const { BASE_CLASS, CLASS_MAP, BASE_AMOUNT } = gOrbit.options;
         const target = gOrbit.elements.orbit.querySelector(
             `#${BASE_CLASS}-${element.name}`
         );
         const targetItem = target.querySelector(`.${gOrbit.class.item}`);
         const weight = element.execCnt;
+        targetItem.classList.forEach((className) => {
+            if (/^orbit-item-/.test(className)) {
+                targetItem.classList.remove(className);
+            }
+        });
         if (weight <= level1) {
             targetItem.classList.add(`${gOrbit.class.item}-xs`);
         } else if (weight <= level2) {
@@ -278,6 +366,11 @@ const orbitSetDepth = () => {
         Object.keys(map).forEach((key) => {
             const statusClassName = `${BASE_CLASS}-key-${key}`;
             let status = item.querySelector(`.${statusClassName}`);
+            item.classList.forEach((className) => {
+                    if (/^orbit-value-/.test(className)) {
+                        status.classList.remove(className);
+                    }
+                });
             if (!status) {
                 status = document.createElement("div");
                 status.classList.add(statusClassName);
@@ -335,6 +428,7 @@ const orbitDashboard = {
         depth: orbitSetDepth,
         position: orbitSetPosition,
     },
+    lastFetchStatus: "",
     options: {
         DEBUG: false,
         BASE_CLASS: "orbit",
@@ -360,6 +454,10 @@ const orbitDashboard = {
                 NORMAL: "disk-normal",
                 WARN: "disk-warning",
                 CRITICAL: "disk-critical",
+            },
+            server: {
+                NORMAL: "server-normal",
+                ABNORMAL: "server-abnormal",
             },
         },
     },
