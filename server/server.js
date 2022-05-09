@@ -4,6 +4,8 @@ import fs from "fs";
 
 const app = express();
 const PORT = process.env.PORT || 8011;
+let apiIsOn = true;
+let apiStatus = 200;
 
 app.set("view engine", "pug");
 app.set("views", process.cwd() + "/server/views");
@@ -28,12 +30,41 @@ const fakeDB = () => {
 };
 
 const apiController = async (req, res) => {
-    res.json(fakeDB());
+    if (apiIsOn) {
+        res.json(fakeDB());
+    } else {
+        res.status(apiStatus);
+        res.end();
+    }
 };
 
-app.post("/post", apiController);
-app.get("/get", apiController);
+const apiOn = async (req, res) => {
+    apiIsOn = true;
+    res.status(200);
+    res.end();
+};
 
+const apiOff = async (req, res) => {
+    apiIsOn = false;
+    let status = req.params.stat;
+    if (status == "200") {
+        apiStatus = 200;
+    }
+    if (status == "404") {
+        apiStatus = 404;
+    }
+    if (status == "500") {
+        apiStatus = 500;
+    }
+    res.status(200);
+    res.end();
+};
+
+app.post("/api/post", apiController);
+app.get("/api/get", apiController);
+
+app.get("/api/on", apiOn);
+app.get("/api/off/:stat", apiOff);
 app.get("/", async (req, res) => res.render("index"));
 
 const listen = () => {

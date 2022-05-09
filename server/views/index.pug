@@ -3,8 +3,6 @@ extends _base
 block contents
     .container-fluid.flex-grow-1.w-100
         .orbit
-            .orbit-alert(role="alert")
-                | 에러: 새로운 데이터를 가져오는 동안 오류가 발생했습니다.
             .orbit-center-circle
                 .orbit-frame.bg-secondary
                 .orbit-title.text-white Orbit
@@ -38,7 +36,7 @@ block scripts
             use_fetch: true,
 
             // fetch를 시도할 url
-            fetch_href: "/post",
+            fetch_href: "/api/post",
 
             // fetch를 시도할 method ("get" / "post")
             fetch_method: "post",
@@ -73,5 +71,19 @@ block scripts
             },
 
             // use_fetch가 false일 경우 사용할 데이터
-            //- data: {},
+            // data: {},
         });
+
+        // init 이후 옵션 override
+        // => gOrbit.options.[옵션] = "값";
+
+        // gOrbit.options.DEBUG
+        // gOrbit.options.BASE_CLASS
+        // gOrbit.options.BASE_RADIUS
+        // gOrbit.options.BASE_AMOUNT
+        // gOrbit.options.UPDATE_INTERVAL
+        // gOrbit.options.USE_FETCH
+        // gOrbit.options.FETCH_HREF
+        // gOrbit.options.FETCH_METHOD
+        // gOrbit.options.ON_CLICK
+        // gOrbit.options.CLASS_MAP
