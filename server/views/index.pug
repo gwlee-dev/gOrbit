@@ -3,25 +3,54 @@ extends _base
 block contents
     .container-fluid.flex-grow-1.w-100
         .orbit
+            .orbit-alert(role="alert")
+                | 에러: 새로운 데이터를 가져오는 동안 오류가 발생했습니다.
             .orbit-center-circle
                 .orbit-frame.bg-secondary
                 .orbit-title.text-white Orbit
 
 block scripts
     script.
+        // gOrbit = window.gOrbit
+
+        // gOrbit.listen({object}) => 함수 실행시마다 object의 내용을 데이터로 가져오고 업데이트 수행
+        // gOrbit.update() => update_interval과 관계없이 즉시 업데이트 수행
+        // gOrbit.dataList => 현재 갖고있는 데이터의 목록 array (fetch 결과가 저장됨, 내부에서 각 interval 마다 접근)
+
+        // orbit 초기화 및 옵션 가져오기 (함수 실행 시점은 관계없음, 최초 1회 이후 재실행 금지)
         gOrbit.init({
+            // 새로운 데이터를 받았을때 콘솔에 로그 표시 여부 (boolean)
             debug: false,
+
+            // 모든 객체의 클래스명 prefix 지정
             base_class: "orbit",
+
+            // 첫번째 궤도의 반지름 지정 (rem, 이후 2배씩 증가)
             base_radius: 6,
+
+            // 첫번째 궤도에서 표시할 아이템 수 지정 (정수, 이후 2배씩 증가)
             base_amount: 6,
+
+            // fetch 시도 간격 지정 (ms)
             update_interval: 1000,
+
+            // fetch 사용 여부 (boolean)
             use_fetch: true,
+
+            // fetch를 시도할 url
             fetch_href: "/post",
+
+            // fetch를 시도할 method ("get" / "post")
             fetch_method: "post",
+
+            // 각 아이템의 HTML onclick 속성 지정 (string, this.name => 데이터의 name 필드 반환)
             on_click: "alert(this.name)",
+
+            // 데이터의 상태값 속성을 각 아이템에 class로 지정
             class_map: {
                 cpu: {
-                    NORMAL: "normal",
+                    // 필드명: {}
+                    NORMAL: "normal", // 속성: "지정할 클래스명"
                     WARN: "warning",
                     CRITICAL: "critical",
                 },
@@ -42,4 +71,7 @@ block scripts
                     DISCARDED: "server-discarded",
                 },
             },
+
+            // use_fetch가 false일 경우 사용할 데이터
+            //- data: {},
         });

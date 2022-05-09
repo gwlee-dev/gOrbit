@@ -184,3 +184,15 @@
     white-space: nowrap;
     padding: 0.25rem;
 }
+
+.orbit-alert {
+    position: relative;
+    padding: 1rem 1rem;
+    margin: 0.5rem auto;
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+    width: fit-content;
+}

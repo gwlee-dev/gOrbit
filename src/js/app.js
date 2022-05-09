@@ -49,6 +49,10 @@ const orbitInitFunc = (options) => {
     gOrbit.class.layer = `${gOrbit.options.BASE_CLASS}-layer`;
     gOrbit.elements.layer.classList.add(gOrbit.class.layer);
 
+    gOrbit.elements.alert = document.createElement("div");
+    gOrbit.class.alert = `${gOrbit.options.BASE_CLASS}-alert`;
+    gOrbit.elements.alert.classList.add(gOrbit.class.alert);
+
     gOrbit.elements.body.appendChild(gOrbit.elements.name);
     gOrbit.elements.item.appendChild(gOrbit.elements.frame);
     gOrbit.elements.item.appendChild(gOrbit.elements.body);
@@ -155,7 +159,7 @@ const orbitSetPosition = async (max) => {
         );
         const elementAmount = elements.length;
         const eachAngle = 360 / elementAmount;
-        const currentHeight = gOrbit.options.BASE_RADIUS * depth + depth;
+        const currentHeight = gOrbit.options.BASE_RADIUS * depth;
         orbitDrawCircle(depth++, currentHeight);
         let currentAngle = 0;
         for (const element of elements) {
