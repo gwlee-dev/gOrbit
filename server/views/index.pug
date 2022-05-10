@@ -1,11 +1,10 @@
 extends _base
 
 block contents
-    .container-fluid.flex-grow-1.w-100
-        .orbit
-            .orbit-center-circle
-                .orbit-frame.bg-secondary
-                .orbit-title.text-white Orbit
+    .orbit
+        .orbit-center-circle
+            .orbit-frame.bg-secondary
+            .orbit-title.text-white Orbit
 
 block scripts
     script.
@@ -17,8 +16,8 @@ block scripts
 
         // orbit 초기화 및 옵션 가져오기 (함수 실행 시점은 관계없음, 최초 1회 이후 재실행 금지)
         gOrbit.init({
-            // 새로운 데이터를 받았을때 콘솔에 로그 표시 여부 (boolean)
-            debug: true,
+            // 디버그 모드 여부 (boolean)
+            debug: false,
 
             // 모든 객체의 클래스명 prefix 지정
             base_class: "orbit",
@@ -47,8 +46,8 @@ block scripts
             // 데이터의 상태값 속성을 각 아이템에 class로 지정
             class_map: {
                 cpu: {
-                    // 필드명: {}
-                    NORMAL: "normal", // 속성: "지정할 클래스명"
+                    //  필드명 : 지정할 클래스명
+                    NORMAL: "normal",
                     WARN: "warning",
                     CRITICAL: "critical",
                 },
@@ -68,6 +67,7 @@ block scripts
                 },
             },
 
+            // 클래스를 바인딩 할 위치 특정 (생략시 body 밑에 새로운 개체 생성 후 바인딩)
             binding_specify: {
                 server: "body",
             },

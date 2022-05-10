@@ -13,6 +13,7 @@ const orbitInitFunc = (options) => {
     gOrbit.options.ON_CLICK = options.on_click;
     gOrbit.options.CLASS_MAP = options.class_map;
     gOrbit.options.BINDING_SPECIFY = options.binding_specify;
+
     const { USE_FETCH, FETCH_HREF, UPDATE_INTERVAL, DEBUG } = gOrbit.options;
 
     DEBUG && console.log(">> Importing Complete");
@@ -271,7 +272,8 @@ const orbitUpdate = async () => {
 };
 
 const orbitSetPosition = async (max) => {
-    const { BASE_CLASS, BASE_RADIUS } = gOrbit.options;
+    const { DEBUG, BASE_CLASS, BASE_RADIUS } = gOrbit.options;
+    DEBUG && console.log("Setting Position..");
     for (let depth = 1; depth < max; ) {
         const elements = gOrbit.elements.orbit.querySelectorAll(
             `.${gOrbit.class.placer}.${BASE_CLASS}-depth-${depth} .${gOrbit.class.radius}`
@@ -298,6 +300,7 @@ const orbitSetPosition = async (max) => {
             currentAngle += eachAngle;
         }
     }
+    DEBUG && console.log(">> Setting Complete");
 };
 
 const orbitDrawCircle = (depth, currentHeight) => {
@@ -320,7 +323,7 @@ const orbitDrawCircle = (depth, currentHeight) => {
 const orbitSetDepth = () => {
     const { DEBUG, BASE_CLASS, CLASS_MAP, BINDING_SPECIFY, BASE_AMOUNT } =
         gOrbit.options;
-    DEBUG && console.log("Setting Item Depths..");
+    DEBUG && console.log("Setting Depths..");
 
     let depth = 1;
     let idx = 1;
@@ -381,8 +384,8 @@ const orbitSetDepth = () => {
                     }
                 });
             } else {
-                let status = item.querySelector(`.${statusClassName}`);
                 const statusClassName = `${BASE_CLASS}-key-${key}`;
+                let status = item.querySelector(`.${statusClassName}`);
                 item.classList.forEach((className) => {
                     if (/^orbit-value-/.test(className)) {
                         status.classList.remove(className);
@@ -479,26 +482,8 @@ const orbitDashboard = {
             },
         },
     },
-    elements: {
-        orbit: "",
-        placer: "",
-        radius: "",
-        item: "",
-        frame: "",
-        body: "",
-        layer: "",
-        name: "",
-    },
-    class: {
-        orbit: "",
-        placer: "",
-        radius: "",
-        item: "",
-        frame: "",
-        body: "",
-        layer: "",
-        name: "",
-    },
+    elements: {},
+    class: {},
     obj: "",
 };
 

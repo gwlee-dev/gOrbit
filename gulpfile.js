@@ -30,6 +30,10 @@ const PATH = {
         src: `${SRC}/js/app.js`,
         dest: `${DEST}/js`,
     },
+    assets: {
+        src: `${SRC}/assets/**/*`,
+        dest: `${DEST}`,
+    },
 };
 
 // processing tasks
@@ -79,6 +83,17 @@ const js = async (reload) => {
         });
 };
 
+const assets = async (reload) => {
+    await src(PATH.assets.src)
+        .pipe(dest(PATH.assets.dest))
+        .on("end", (e) => {
+            logger.success("ASSETS");
+            if (reload == true) {
+                sync.reload();
+            }
+        });
+};
+
 // other tasks
 const logger = {
     success: (msg) => {
@@ -111,6 +126,10 @@ const watcher = () => {
         js(true);
         log(`\n\n🔄 Source Changed: ${e}`);
     });
+    watch(`${SRC}/assets/**/*`).on("change", (e) => {
+        assets(true);
+        log(`\n\n🔄 Source Changed: ${e}`);
+    });
     watch(`server/**/*.pug`).on("change", (e) => {
         sync.reload(true);
         log(`\n\n🔄 Source Changed: ${e}`);
@@ -118,5 +137,5 @@ const watcher = () => {
 };
 
 // run
-exports.dev = series([clean], [js], [css], [server], [watcher]);
+exports.dev = series([clean], [js], [css], [assets], [server], [watcher]);
 exports.build = series([js], [css]);
