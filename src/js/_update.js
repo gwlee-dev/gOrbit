@@ -1,9 +1,12 @@
 import { orbitPrintError, orbitRemoveError } from "./_alert";
 import { orbitGetData, orbitSortData } from "./_data";
+import { orbitSetDepth } from "./_depth";
 import { orbitPlaceItems } from "./_place";
+import { orbitSetPosition } from "./_position";
 
 export const orbitUpdate = async () => {
-    const { USE_FETCH, FETCH_HREF, DEBUG, BASE_CLASS } = gOrbit.options;
+    const { USE_FETCH, FETCH_HREF, DEBUG, BASE_CLASS, BASE_RADIUS } =
+        gOrbit.options;
     DEBUG && console.log("[ Update Data ]");
 
     let fetchData;
@@ -63,7 +66,14 @@ export const orbitUpdate = async () => {
         target.parentNode.removeChild(target);
     });
 
-    gOrbit.set.position(gOrbit.set.depth());
+    const maxDepth = await orbitSetDepth();
+    await orbitSetPosition(maxDepth + 1);
+
+    const innerSize = BASE_RADIUS * maxDepth * 2 + 5;
+    gOrbit.dom.inner.setAttribute(
+        "style",
+        `min-width: ${innerSize}rem; min-height: ${innerSize}rem;`
+    );
 
     DEBUG && console.log(">>>>> CYCLE END\n\n\n");
 };

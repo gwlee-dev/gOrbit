@@ -1,7 +1,7 @@
 export const orbitDebugging = {
     start: () => {
         const { BASE_CLASS } = gOrbit.options;
-        const panel = gOrbit.dom.orbit.querySelector(`#${BASE_CLASS}-debugger`);
+        const panel = gOrbit.dom.orbit.querySelector(`.${BASE_CLASS}-debugger`);
 
         if (!panel) {
             gOrbit.dom.orbit.appendChild(gOrbit.dom.debug);
@@ -11,7 +11,7 @@ export const orbitDebugging = {
     },
     end: () => {
         const { BASE_CLASS } = gOrbit.options;
-        const panel = gOrbit.dom.orbit.querySelector(`#${BASE_CLASS}-debugger`);
+        const panel = gOrbit.dom.orbit.querySelector(`.${BASE_CLASS}-debugger`);
         if (panel) {
             gOrbit.dom.orbit.removeChild(panel);
         }

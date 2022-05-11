@@ -1,8 +1,15 @@
+import { orbitScroll } from "./_scroll";
+
 export const createElement = () => {
     const { DEBUG, BASE_CLASS } = gOrbit.options;
 
     DEBUG && console.log("Creating DOM Elements..");
     gOrbit.dom.orbit = document.querySelector(`.${BASE_CLASS}`);
+
+    gOrbit.class.inner = `${BASE_CLASS}-inner`;
+    gOrbit.dom.inner = document.querySelector(
+        `.${BASE_CLASS} .${gOrbit.class.inner}`
+    );
 
     gOrbit.dom.placer = document.createElement("div");
     gOrbit.class.placer = `${BASE_CLASS}-placer`;
@@ -47,7 +54,7 @@ export const createElement = () => {
     gOrbit.dom.alert.classList.add("placing");
 
     gOrbit.dom.body.appendChild(gOrbit.dom.name);
-    gOrbit.dom.body.appendChild(gOrbit.dom.name);
+    gOrbit.dom.body.appendChild(gOrbit.dom.badge);
     gOrbit.dom.item.appendChild(gOrbit.dom.frame);
     gOrbit.dom.item.appendChild(gOrbit.dom.body);
     gOrbit.dom.item.appendChild(gOrbit.dom.status);
@@ -55,17 +62,10 @@ export const createElement = () => {
     gOrbit.dom.placer.appendChild(gOrbit.dom.radius);
 
     gOrbit.dom.debug = document.createElement("ul");
-    gOrbit.dom.debug.setAttribute(
-        "style",
-        "position: absolute; top: 1rem; left: 0;"
-    );
-    gOrbit.dom.debug.id = `${BASE_CLASS}-debugger`;
+    gOrbit.dom.debug.classList.add(`${BASE_CLASS}-debugger`);
 
     gOrbit.dom.debugTitle = document.createElement("h5");
-    gOrbit.dom.debugTitle.setAttribute(
-        "style",
-        "margin-left: -1.5rem; font-weight: bold; border-top: 1px solid #000; width: 10rem; padding-top: 0.5rem;"
-    );
+    gOrbit.dom.debugTitle.classList.add(`${BASE_CLASS}-debug-title`);
     gOrbit.dom.debugTitle.innerHTML = "DEBUG MODE";
     gOrbit.dom.debugMin = document.createElement("li");
     gOrbit.dom.debugMax = document.createElement("li");
@@ -81,6 +81,8 @@ export const createElement = () => {
     gOrbit.dom.debug.appendChild(gOrbit.dom.debugLv2);
     gOrbit.dom.debug.appendChild(gOrbit.dom.debugLv3);
     gOrbit.dom.debug.appendChild(gOrbit.dom.debugLength);
+
+    orbitScroll();
 
     DEBUG && console.log(">> Creating Complete");
 };
@@ -99,7 +101,7 @@ export const orbitDrawCircle = (depth, currentHeight) => {
     const cloneIdString = `${BASE_CLASS}-${gOrbit.class.layer}-${depth}`;
     clone.id = cloneIdString;
     clone.style.width = `${currentHeight * 2}rem`;
-    gOrbit.dom.orbit.appendChild(clone);
+    gOrbit.dom.inner.appendChild(clone);
 };
 
 export const orbitTransition = (element) => {

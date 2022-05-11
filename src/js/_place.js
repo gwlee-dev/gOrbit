@@ -8,5 +8,5 @@ export const orbitPlaceItems = (element) => {
     inner.setAttribute("onclick", ON_CLICK);
     inner.name = `${element.name}`;
     ON_CLICK && inner.setAttribute("onclick", ON_CLICK);
-    gOrbit.dom.orbit.appendChild(clone);
+    gOrbit.dom.inner.appendChild(clone);
 };

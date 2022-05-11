@@ -104,5 +104,5 @@ export const orbitSetDepth = () => {
     });
     DEBUG && console.log(">> Setting Complete");
 
-    return depth + 1;
+    return depth;
 };
