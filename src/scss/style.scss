@@ -61,7 +61,7 @@
 
 .orbit-placer {
     position: absolute;
-    z-index: 999;
+    z-index: 998;
     bottom: 50%;
     left: 50%;
     width: 0;
@@ -116,7 +116,7 @@
     top: 0;
     left: 0;
     transition: transform 0.5s ease;
-    z-index: 998;
+    z-index: 997;
 }
 
 .placing {
@@ -130,7 +130,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 6rem;
-    z-index: 998;
+    z-index: 997;
     .orbit-frame {
         border: none;
         background-color: #343a40;
@@ -210,6 +210,7 @@
     left: 50%;
     transform: translateX(-50%);
     transition: opacity 1s ease, margin-top 0.5s ease;
+    z-index: 999;
 }
 
 .orbit-debug-title {
@@ -224,4 +225,5 @@
     position: fixed;
     top: 6rem;
     left: 2rem;
+    z-index: 1000;
 }
