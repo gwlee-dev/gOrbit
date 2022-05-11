@@ -12,6 +12,7 @@
         "type": "git",
         "url": "git+https://github.com/gwlee-dev/orbit-dashboard.git"
     },
+    "files": ["dist"],
     "keywords": [
         "dashboard"
     ],
