@@ -25,6 +25,10 @@ export const createElement = () => {
     gOrbit.class.body = `${BASE_CLASS}-body`;
     gOrbit.dom.body.classList.add(gOrbit.class.body);
 
+    gOrbit.dom.badge = document.createElement("div");
+    gOrbit.class.badge = `${BASE_CLASS}-badge`;
+    gOrbit.dom.badge.classList.add(gOrbit.class.badge);
+
     gOrbit.dom.name = document.createElement("span");
     gOrbit.class.name = `${BASE_CLASS}-name`;
     gOrbit.dom.name.classList.add(gOrbit.class.name);
@@ -42,6 +46,7 @@ export const createElement = () => {
     gOrbit.dom.alert.classList.add(gOrbit.class.alert);
     gOrbit.dom.alert.classList.add("placing");
 
+    gOrbit.dom.body.appendChild(gOrbit.dom.name);
     gOrbit.dom.body.appendChild(gOrbit.dom.name);
     gOrbit.dom.item.appendChild(gOrbit.dom.frame);
     gOrbit.dom.item.appendChild(gOrbit.dom.body);
