@@ -2,7 +2,7 @@
     "name": "orbit_dashboard",
     "version": "1.0.0",
     "description": "Orbit Dashboard",
-    "main": "main.js",
+    "main": "src/js/main.js",
     "scripts": {
         "watch": "nodemon --watch ./gulpfile.js --exec babel-node ./node_modules/.bin/gulp dev",
         "build": "nodemon --watch ./gulpfile.js --exec babel-node ./node_modules/.bin/gulp build",

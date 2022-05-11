@@ -27,7 +27,7 @@ const PATH = {
         dest: `${DEST}/css`,
     },
     js: {
-        src: `${SRC}/js/app.js`,
+        src: `${SRC}/js/main.js`,
         dest: `${DEST}/js`,
     },
     assets: {
@@ -74,7 +74,7 @@ const js = async (reload) => {
         .pipe(terser())
         .on("error", (e) => logger.failed("terser", e))
         .pipe(sourcemaps.write("."))
-        .pipe(dest(PATH.js.dest, { sourcemaps: "." }))
+        .pipe(dest(PATH.js.dest))
         .on("end", (e) => {
             logger.success("JS");
             if (reload == true) {

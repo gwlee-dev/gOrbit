@@ -21,7 +21,7 @@ html(lang="ko")
         title Orbit
     body
         header 
-            nav.navbar.navbar-expand.navbar-light.fixed-top
+            nav.navbar.navbar-expand.navbar-light
                 .container-fluid
                     a.navbar-brand(href="#") Orbit Dashboard
                     button.navbar-toggler(
@@ -34,14 +34,24 @@ html(lang="ko")
                     )
                         span.navbar-toggler-icon
                     #topNav.collapse.navbar-collapse
-                        ul.navbar-nav
+                        ul.navbar-nav.w-100
                             li.nav-item
                                 a.nav-link(
                                     role="button",
                                     onclick="gOrbit.update()"
                                 ) Update
                             li.nav-item
-                                a.nav-link(role="button", href="/get") DummyAPI(GET)
+                                a.nav-link(role="button", href="/api/get") Dummy API (GET)
+                            li.nav-item
+                                a.nav-link(
+                                    role="button",
+                                    onclick="gOrbit.debug.start()"
+                                ) Debug Mode ON
+                            li.nav-item.me-auto
+                                a.nav-link(
+                                    role="button",
+                                    onclick="gOrbit.debug.end()"
+                                ) Debug Mode OFF
                             li.nav-item
                                 a.nav-link(
                                     role="button",
@@ -63,7 +73,6 @@ html(lang="ko")
                                     onclick="fetch('/api/off/500');"
                                 ) SERVER OFF (500)
         block contents
-        #particles-js.overflow-hidden
 
         script(
             src="https://cdn.jsdelivr.net/npm/promise-polyfill@8.1/dist/polyfill.min.js"
