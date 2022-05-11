@@ -10,11 +10,13 @@ export const orbitUpdate = async () => {
     try {
         DEBUG && console.log("Fetching..");
         fetchData = await orbitGetData(USE_FETCH, FETCH_HREF);
-        DEBUG && console.log(">> Fetching Complete");
         orbitRemoveError();
+        DEBUG && console.log(">> Fetching Complete");
+        gOrbit.dom.debugLength.innerHTML = `Amount: ${fetchData.serviceData.length}`;
     } catch (err) {
-        DEBUG && console.log(">> Error occurred on Fetching");
-        orbitPrintError("new", err);
+        orbitPrintError(err);
+        DEBUG && console.log(">> Error occurred on Fetching\n\n");
+        return;
     }
 
     let sortData;
@@ -24,8 +26,9 @@ export const orbitUpdate = async () => {
         DEBUG && console.log(">> Sorting Complete");
         orbitRemoveError();
     } catch (err) {
-        DEBUG && console.log(">> Error occurred on Sorting");
-        orbitPrintError("new", err);
+        DEBUG && console.log(">> Error occurred on Sorting\n\n");
+        orbitPrintError(err);
+        return;
     }
 
     if (!sortData) return;
@@ -54,7 +57,7 @@ export const orbitUpdate = async () => {
         orbitPlaceItems(currentItem, "add");
     });
     await removedItems.forEach((element) => {
-        const target = gOrbit.elements.orbit.querySelector(
+        const target = gOrbit.dom.orbit.querySelector(
             `#${BASE_CLASS}-${element}`
         );
         target.parentNode.removeChild(target);

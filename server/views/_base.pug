@@ -34,14 +34,24 @@ html(lang="ko")
                     )
                         span.navbar-toggler-icon
                     #topNav.collapse.navbar-collapse
-                        ul.navbar-nav
+                        ul.navbar-nav.w-100
                             li.nav-item
                                 a.nav-link(
                                     role="button",
                                     onclick="gOrbit.update()"
                                 ) Update
                             li.nav-item
-                                a.nav-link(role="button", href="/get") DummyAPI(GET)
+                                a.nav-link(role="button", href="/api/get") Dummy API (GET)
+                            li.nav-item
+                                a.nav-link(
+                                    role="button",
+                                    onclick="gOrbit.debug.start()"
+                                ) Debug Mode ON
+                            li.nav-item.me-auto
+                                a.nav-link(
+                                    role="button",
+                                    onclick="gOrbit.debug.end()"
+                                ) Debug Mode OFF
                             li.nav-item
                                 a.nav-link(
                                     role="button",

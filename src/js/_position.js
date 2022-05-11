@@ -4,7 +4,7 @@ export const orbitSetPosition = async (max) => {
     const { DEBUG, BASE_CLASS, BASE_RADIUS } = gOrbit.options;
     DEBUG && console.log("Setting Position..");
     for (let depth = 1; depth < max; ) {
-        const elements = gOrbit.elements.orbit.querySelectorAll(
+        const elements = gOrbit.dom.orbit.querySelectorAll(
             `.${gOrbit.class.placer}.${BASE_CLASS}-depth-${depth} .${gOrbit.class.radius}`
         );
         const elementAmount = elements.length;

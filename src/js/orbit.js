@@ -1,3 +1,4 @@
+import { orbitDebugging } from "./_debug";
 import { orbitSetDepth } from "./_depth";
 import { orbitInitFunc } from "./_init";
 import { orbitListenFunc } from "./_listen";
@@ -9,12 +10,13 @@ export const orbitDashboard = {
     init: orbitInitFunc,
     listen: orbitListenFunc,
     update: orbitUpdate,
+    debug: orbitDebugging,
     set: {
         depth: orbitSetDepth,
         position: orbitSetPosition,
     },
-    dataList: [],
     options: defaultOptions,
-    elements: {},
+    dataList: [],
+    dom: {},
     class: {},
 };

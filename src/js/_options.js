@@ -7,26 +7,25 @@ export const defaultOptions = {
     USE_FETCH: true,
     FETCH_HREF: "/api",
     FETCH_METHOD: "get",
-    ON_CLICK: "",
     CLASS_MAP: {
         cpu: {
-            NORMAL: "cpu-normal",
-            WARN: "cpu-warning",
-            CRITICAL: "cpu-critical",
+            NORMAL: "normal",
+            WARN: "warning",
+            CRITICAL: "critical",
         },
         memory: {
-            NORMAL: "mem-normal",
-            WARN: "mem-warning",
-            CRITICAL: "mem-critical",
+            NORMAL: "normal",
+            WARN: "warning",
+            CRITICAL: "critical",
         },
         disk: {
-            NORMAL: "disk-normal",
-            WARN: "disk-warning",
-            CRITICAL: "disk-critical",
+            NORMAL: "normal",
+            WARN: "warning",
+            CRITICAL: "critical",
         },
         server: {
-            NORMAL: "server-normal",
-            ABNORMAL: "server-abnormal",
+            NORMAL: "normal",
+            ABNORMAL: "abnormal",
         },
     },
 };

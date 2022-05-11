@@ -16,15 +16,15 @@ export const orbitSetDepth = () => {
     const level2 = weightAverage * 2;
     const level3 = weightAverage * 3;
     if (DEBUG) {
-        gOrbit.elements.debugMax.innerHTML = `MAX: ${maxWeight}`;
-        gOrbit.elements.debugMin.innerHTML = `MIN: ${minWeight}`;
-        gOrbit.elements.debugLv1.innerHTML = `Lv1: ${level1}`;
-        gOrbit.elements.debugLv2.innerHTML = `Lv2: ${level2}`;
-        gOrbit.elements.debugLv3.innerHTML = `Lv3: ${level3}`;
+        gOrbit.dom.debugMax.innerHTML = `Max execCnt: ${maxWeight}`;
+        gOrbit.dom.debugMin.innerHTML = `Min execCnt: ${minWeight}`;
+        gOrbit.dom.debugLv1.innerHTML = `Large Criteria: ${level1}`;
+        gOrbit.dom.debugLv2.innerHTML = `Mid Criteria: ${level2}`;
+        gOrbit.dom.debugLv3.innerHTML = `Small Criteria: ${level3}`;
     }
 
     gOrbit.dataList.forEach((element) => {
-        const target = gOrbit.elements.orbit.querySelector(
+        const target = gOrbit.dom.orbit.querySelector(
             `#${BASE_CLASS}-${element.name}`
         );
         const targetItem = target.querySelector(`.${gOrbit.class.item}`);

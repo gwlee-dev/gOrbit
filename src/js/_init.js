@@ -1,4 +1,4 @@
-import { orbitDebugPanel } from "./_debug";
+import { orbitDebugging } from "./_debug";
 import { createElement } from "./_elements";
 import { importOptions } from "./_options";
 import { orbitUpdate } from "./_update";
@@ -10,7 +10,7 @@ export const orbitInitFunc = (options) => {
 
     const { USE_FETCH, UPDATE_INTERVAL, DEBUG } = gOrbit.options;
 
-    DEBUG && orbitDebugPanel();
+    DEBUG && orbitDebugging.start();
     DEBUG && console.log(">>>>> INITIALIZED\n\n");
 
     orbitUpdate();
