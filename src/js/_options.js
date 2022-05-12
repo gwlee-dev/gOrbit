@@ -32,16 +32,8 @@ export const defaultOptions = {
 
 export const importOptions = (options) => {
     options.debug == true && console.log("Importing Options..");
-    gOrbit.options.DEBUG = options.debug;
-    gOrbit.options.BASE_CLASS = options.base_class;
-    gOrbit.options.BASE_RADIUS = options.base_radius;
-    gOrbit.options.BASE_AMOUNT = options.base_amount;
-    gOrbit.options.UPDATE_INTERVAL = options.update_interval;
-    gOrbit.options.USE_FETCH = options.use_fetch;
-    gOrbit.options.FETCH_HREF = options.fetch_href;
-    gOrbit.options.FETCH_METHOD = options.fetch_method;
-    gOrbit.options.ON_CLICK = options.on_click;
-    gOrbit.options.CLASS_MAP = options.class_map;
-    gOrbit.options.BINDING_SPECIFY = options.binding_specify;
+    for (const opt in options) {
+        gOrbit.options[opt.toUpperCase()] = options[opt];
+    }
     options.debug && console.log(">> Importing Complete");
 };

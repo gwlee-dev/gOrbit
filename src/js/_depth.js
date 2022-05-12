@@ -1,44 +1,42 @@
 export const orbitSetDepth = () => {
     const { DEBUG, BASE_CLASS, CLASS_MAP, BINDING_SPECIFY, BASE_AMOUNT } =
         gOrbit.options;
+    const { dmax, dmin, dlv1, dlv2, dlv3, orbit } = gOrbit.dom;
     DEBUG && console.log("Setting Depths..");
 
     let depth = 1;
     let idx = 1;
-    let newDataWeights = [];
-    for (const element of gOrbit.dataList) {
-        newDataWeights.push(element.execCnt);
-    }
+
+    const newDataWeights = gOrbit.dataList.map((x) => x.execCnt);
     const maxWeight = Math.max.apply(null, newDataWeights);
     const minWeight = Math.min.apply(null, newDataWeights);
     const weightAverage = (maxWeight - minWeight) / 4;
-    const level1 = weightAverage * 1;
-    const level2 = weightAverage * 2;
-    const level3 = weightAverage * 3;
+    const criteria = Array.from({ length: 3 }, () => 0).map(
+        (x, idx) => weightAverage * (idx + 1)
+    );
+
     if (DEBUG) {
-        gOrbit.dom.debugMax.innerHTML = `Max execCnt: ${maxWeight}`;
-        gOrbit.dom.debugMin.innerHTML = `Min execCnt: ${minWeight}`;
-        gOrbit.dom.debugLv1.innerHTML = `Large Criteria: ${level1}`;
-        gOrbit.dom.debugLv2.innerHTML = `Mid Criteria: ${level2}`;
-        gOrbit.dom.debugLv3.innerHTML = `Small Criteria: ${level3}`;
+        dmax.innerHTML = `Max execCnt: ${maxWeight}`;
+        dmin.innerHTML = `Min execCnt: ${minWeight}`;
+        dlv1.innerHTML = `Large Criteria: ${criteria[0]}`;
+        dlv2.innerHTML = `Mid Criteria: ${criteria[1]}`;
+        dlv3.innerHTML = `Small Criteria: ${criteria[2]}`;
     }
 
     gOrbit.dataList.forEach((element) => {
-        const target = gOrbit.dom.orbit.querySelector(
-            `#${BASE_CLASS}-${element.name}`
-        );
+        const target = orbit.querySelector(`#${BASE_CLASS}-${element.name}`);
         const targetItem = target.querySelector(`.${gOrbit.class.item}`);
         const weight = element.execCnt;
-        targetItem.classList.forEach((className) => {
-            if (/^orbit-item-/.test(className)) {
-                targetItem.classList.remove(className);
-            }
-        });
-        if (weight <= level1) {
+
+        Array.from(targetItem.classList)
+            .filter((x) => /^orbit-item-/.test(x))
+            .map((x) => targetItem.classList.remove(x));
+
+        if (weight <= criteria[0]) {
             targetItem.classList.add(`${gOrbit.class.item}-xs`);
-        } else if (weight <= level2) {
+        } else if (weight <= criteria[1]) {
             targetItem.classList.add(`${gOrbit.class.item}-sm`);
-        } else if (weight <= level3) {
+        } else if (weight <= criteria[2]) {
             targetItem.classList.add(`${gOrbit.class.item}-md`);
         } else {
             targetItem.classList.add(`${gOrbit.class.item}-lg`);
@@ -46,55 +44,52 @@ export const orbitSetDepth = () => {
 
         const item = target.querySelector(`.${gOrbit.class.status}`);
         const map = CLASS_MAP;
+
         Object.keys(map).forEach((key) => {
+            let binding;
+            let statusClassName;
             if (BINDING_SPECIFY[key]) {
                 const bindingClass = `${BASE_CLASS}-${BINDING_SPECIFY[key]}`;
-                const binding = target.querySelector(`.${bindingClass}`);
-                binding.classList.forEach((className) => {
-                    if (/^orbit-specify-/.test(className)) {
-                        binding.classList.remove(className);
-                    }
-                });
-                Object.keys(map[key]).forEach((stat) => {
-                    if (element[key] == stat) {
-                        const statusClassName = `orbit-specify-${key}-${map[key][stat]}`;
-                        binding.classList.add(statusClassName);
-                    }
-                });
+                binding = target.querySelector(`.${bindingClass}`);
+
+                Array.from(binding.classList)
+                    .filter((x) => /^orbit-specify-/.test(x))
+                    .map((x) => binding.classList.remove(x));
+
+                statusClassName = (key, stat) =>
+                    `orbit-specify-${key}-${map[key][stat]}`;
             } else {
-                const statusClassName = `${BASE_CLASS}-key-${key}`;
-                let status = item.querySelector(`.${statusClassName}`);
-                item.classList.forEach((className) => {
-                    if (/^orbit-value-/.test(className)) {
-                        status.classList.remove(className);
-                    }
-                });
-                if (!status) {
-                    status = document.createElement("div");
-                    status.classList.add(statusClassName);
-                    item.appendChild(status);
-                    status = item.querySelector(`.${statusClassName}`);
+                const keyClassName = `${BASE_CLASS}-key-${key}`;
+                binding = item.querySelector(`.${keyClassName}`);
+
+                Array.from(item.classList)
+                    .filter((x) => /^orbit-value-/.test(x))
+                    .map((x) => item.classList.remove(x));
+
+                if (!binding) {
+                    binding = document.createElement("div");
+                    binding.classList.add(keyClassName);
+                    item.appendChild(binding);
+                    binding = item.querySelector(`.${keyClassName}`);
                 } else {
-                    status.classList.forEach((className) => {
-                        if (/^orbit-value-/.test(className)) {
-                            status.classList.remove(className);
-                        }
-                    });
+                    Array.from(binding.classList)
+                        .filter((x) => /^orbit-value-/.test(x))
+                        .map((x) => binding.classList.remove(x));
                 }
-                Object.keys(map[key]).forEach((stat) => {
-                    if (element[key] == stat) {
-                        status.classList.add(`orbit-value-${map[key][stat]}`);
-                    }
-                });
+
+                statusClassName = (key, stat) =>
+                    `orbit-value-${map[key][stat]}`;
             }
+            Object.keys(map[key])
+                .filter((x) => element[key] == x)
+                .forEach((stat) => {
+                    binding.classList.add(statusClassName(key, stat));
+                });
         });
 
-        target.classList.forEach((className) => {
-            if (/^orbit-depth-/.test(className)) {
-                target.classList.remove(className);
-            }
-        });
-        target.classList.remove(`${BASE_CLASS}-depth-*`);
+        Array.from(target.classList)
+            .filter((x) => /^orbit-depth-/.test(x))
+            .map((x) => target.classList.remove(x));
 
         target.classList.add(`${BASE_CLASS}-depth-${depth}`);
         if (idx++ == depth * BASE_AMOUNT) {

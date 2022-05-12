@@ -213,7 +213,7 @@
     z-index: 999;
 }
 
-.orbit-debug-title {
+.orbit-dtitle {
     margin-left: -1.5rem;
     font-weight: bold;
     border-top: 1px solid #000;
@@ -221,9 +221,18 @@
     padding-top: 0.5rem;
 }
 
-.orbit-debugger {
+.orbit-debug {
     position: fixed;
     top: 6rem;
     left: 2rem;
     z-index: 1000;
+}
+
+.orbit-specify-server-abnormal {
+    .orbit-frame {
+        background-color: rgba(255, 255, 255, 0.85) !important;
+    }
+    .orbit-name {
+        color: #842029;
+    }
 }

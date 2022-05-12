@@ -1,4 +1,4 @@
 export const orbitListenFunc = (input) => {
-    orbitDashboard.data = input;
+    orbitDashboard.dataList = input;
     orbitUpdate();
 };

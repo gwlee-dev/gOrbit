@@ -8,19 +8,15 @@ export const orbitInitFunc = async (options) => {
     importOptions(options);
     createElement();
 
-    const { USE_FETCH, UPDATE_INTERVAL, DEBUG } = gOrbit.options;
+    const { DEBUG, BASE_CLASS, USE_FETCH, UPDATE_INTERVAL } = gOrbit.options;
+    const { orbit } = gOrbit.dom;
 
     DEBUG && orbitDebugging.start();
     DEBUG && console.log(">>>>> INITIALIZED\n\n");
 
     await orbitUpdate();
-    const initPos = {
-        width: gOrbit.dom.orbit.clientWidth / 2,
-        height: gOrbit.dom.orbit.clientHeight / 2,
-    };
-    console.log(initPos);
-    document
-        .querySelector(".orbit-center-circle")
+    orbit
+        .querySelector(`.${BASE_CLASS}-center-circle`)
         .scrollIntoView({ block: "center", inline: "center" });
     USE_FETCH && setInterval(gOrbit.update, UPDATE_INTERVAL);
 };

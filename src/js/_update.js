@@ -7,6 +7,7 @@ import { orbitSetPosition } from "./_position";
 export const orbitUpdate = async () => {
     const { USE_FETCH, FETCH_HREF, DEBUG, BASE_CLASS, BASE_RADIUS } =
         gOrbit.options;
+    const { damount, orbit, inner } = gOrbit.dom;
     DEBUG && console.log("[ Update Data ]");
 
     let fetchData;
@@ -15,7 +16,7 @@ export const orbitUpdate = async () => {
         fetchData = await orbitGetData(USE_FETCH, FETCH_HREF);
         orbitRemoveError();
         DEBUG && console.log(">> Fetching Complete");
-        gOrbit.dom.debugLength.innerHTML = `Amount: ${fetchData.serviceData.length}`;
+        damount.innerHTML = `Amount: ${fetchData.serviceData.length}`;
     } catch (err) {
         orbitPrintError(err);
         DEBUG && console.log(">> Error occurred on Fetching\n\n");
@@ -34,43 +35,31 @@ export const orbitUpdate = async () => {
         return;
     }
 
-    if (!sortData) return;
-
     DEBUG && console.log("Comparing..");
-    let newDataKeys = [];
-    for (const element of sortData) {
-        newDataKeys.push(element.name);
-    }
-    let oldDataKeys = [];
-    for (const element of gOrbit.dataList) {
-        oldDataKeys.push(element.name);
-    }
+    let newDataKeys = sortData.map((el) => el.name);
+    let oldDataKeys = gOrbit.dataList.map((el) => el.name);
 
-    gOrbit.dataList = sortData;
+    const removed = gOrbit.dataList
+        .filter((x) => !newDataKeys.includes(x.name))
+        .map((x) => {
+            const target = orbit.querySelector(`#${BASE_CLASS}-${x.name}`);
+            target.parentNode.removeChild(target);
+        });
 
-    let addedItems = newDataKeys.filter((x) => !oldDataKeys.includes(x));
-    let removedItems = oldDataKeys.filter((x) => !newDataKeys.includes(x));
+    const added = (gOrbit.dataList = sortData)
+        .filter((x) => !oldDataKeys.includes(x.name))
+        .map((x) => orbitPlaceItems(x, "add"));
+
     DEBUG &&
         console.log(
-            `>> Comparing Complete: Added ${addedItems.length} / Removed ${removedItems.length}`
+            `>> Comparing Complete: Added ${added.length} / Removed ${removed.length}`
         );
-
-    await addedItems.forEach((element) => {
-        const currentItem = sortData.find((x) => x.name === element);
-        orbitPlaceItems(currentItem, "add");
-    });
-    await removedItems.forEach((element) => {
-        const target = gOrbit.dom.orbit.querySelector(
-            `#${BASE_CLASS}-${element}`
-        );
-        target.parentNode.removeChild(target);
-    });
 
     const maxDepth = await orbitSetDepth();
     await orbitSetPosition(maxDepth + 1);
 
     const innerSize = BASE_RADIUS * maxDepth * 2 + 5;
-    gOrbit.dom.inner.setAttribute(
+    inner.setAttribute(
         "style",
         `min-width: ${innerSize}rem; min-height: ${innerSize}rem;`
     );
