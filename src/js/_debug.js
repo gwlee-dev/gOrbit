@@ -11,7 +11,7 @@ export const orbitDebugging = {
     },
     end: () => {
         const { BASE_CLASS } = gOrbit.options;
-        const panel = gOrbit.dom.orbit.querySelector(`.${BASE_CLASS}-debugger`);
+        const panel = gOrbit.dom.orbit.querySelector(`.${BASE_CLASS}-debug`);
         if (panel) {
             gOrbit.dom.orbit.removeChild(panel);
         }

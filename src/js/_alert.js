@@ -2,6 +2,7 @@ import { orbitTransition } from "./_elements";
 
 export const orbitPrintError = (err) => {
     const { DEBUG } = gOrbit.options;
+    const { orbit, alert } = gOrbit.dom;
     let errMsg = "데이터를 갱신하는 동안 오류가 발생했습니다.";
     let errDetail = "";
 
@@ -20,21 +21,21 @@ export const orbitPrintError = (err) => {
             break;
     }
 
-    let element = gOrbit.dom.orbit.querySelector(`.${gOrbit.class.alert}`);
+    let element = orbit.querySelector(`.${gOrbit.class.alert}`);
     const errString = `${errMsg}&nbsp;&nbsp;( ${errDetail} )`;
     !DEBUG && console.log(`%c ${errMsg}`, "color: red");
     if (element) {
         element.innerHTML = errString;
     } else {
-        const clone = gOrbit.dom.alert.cloneNode(true);
-        clone.innerHTML = errString;
-        gOrbit.dom.orbit.appendChild(clone);
-        element = gOrbit.dom.orbit.querySelector(`.${gOrbit.class.alert}`);
+        alert.innerHTML = errString;
+        orbit.appendChild(alert);
+        element = orbit.querySelector(`.${gOrbit.class.alert}`);
     }
     setTimeout(orbitTransition, 500, element);
 };
 
 export const orbitRemoveError = () => {
-    const element = gOrbit.dom.orbit.querySelector(`.${gOrbit.class.alert}`);
-    element && gOrbit.dom.orbit.removeChild(element);
+    const { orbit } = gOrbit.dom;
+    const element = orbit.querySelector(`.${gOrbit.class.alert}`);
+    element && orbit.removeChild(element);
 };

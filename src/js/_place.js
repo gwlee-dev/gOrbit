@@ -10,3 +10,9 @@ export const orbitPlaceItems = (element) => {
     ON_CLICK && body.setAttribute("onclick", ON_CLICK);
     inner.appendChild(clone);
 };
+
+export const orbitClearClass = (element, prefix) => {
+    Array.from(element.classList)
+        .filter((x) => x.startsWith(prefix))
+        .map((x) => element.classList.remove(x));
+};

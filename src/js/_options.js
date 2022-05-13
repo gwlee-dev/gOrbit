@@ -1,8 +1,9 @@
 export const defaultOptions = {
     DEBUG: false,
     BASE_CLASS: "orbit",
-    BASE_RADIUS: 5,
+    BASE_RADIUS: 7,
     BASE_AMOUNT: 6,
+    CATEGORIES: ["xs", "sm", "md", "lg"],
     UPDATE_INTERVAL: 1000,
     USE_FETCH: true,
     FETCH_HREF: "/api",

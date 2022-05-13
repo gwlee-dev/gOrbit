@@ -33,4 +33,5 @@ export const orbitScroll = () => {
     };
 
     orbit.addEventListener("mousedown", mouseDownHandler);
+    window.addEventListener("mouseup", mouseUpHandler);
 };

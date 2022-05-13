@@ -1,7 +1,16 @@
+import { orbitClearClass } from "./_place";
+
 export const orbitSetDepth = () => {
-    const { DEBUG, BASE_CLASS, CLASS_MAP, BINDING_SPECIFY, BASE_AMOUNT } =
-        gOrbit.options;
-    const { dmax, dmin, dlv1, dlv2, dlv3, orbit } = gOrbit.dom;
+    const {
+        CATEGORIES,
+        DEBUG,
+        BASE_CLASS,
+        CLASS_MAP,
+        BINDING_SPECIFY,
+        BASE_AMOUNT,
+    } = gOrbit.options;
+    const { debug_max, debug_min, debug_criteria, debug_depth, orbit } =
+        gOrbit.dom;
     DEBUG && console.log("Setting Depths..");
 
     let depth = 1;
@@ -11,35 +20,32 @@ export const orbitSetDepth = () => {
     const maxWeight = Math.max.apply(null, newDataWeights);
     const minWeight = Math.min.apply(null, newDataWeights);
     const weightAverage = (maxWeight - minWeight) / 4;
-    const criteria = Array.from({ length: 3 }, () => 0).map(
-        (x, idx) => weightAverage * (idx + 1)
-    );
+    const criteria = CATEGORIES.map((x, idx) => {
+        if (idx == CATEGORIES.length - 1) return maxWeight;
+        else return Math.ceil(weightAverage * (idx + 1));
+    });
 
     if (DEBUG) {
-        dmax.innerHTML = `Max execCnt: ${maxWeight}`;
-        dmin.innerHTML = `Min execCnt: ${minWeight}`;
-        dlv1.innerHTML = `Large Criteria: ${criteria[0]}`;
-        dlv2.innerHTML = `Mid Criteria: ${criteria[1]}`;
-        dlv3.innerHTML = `Small Criteria: ${criteria[2]}`;
+        debug_max.innerHTML = `Max execCnt: ${maxWeight}`;
+        debug_min.innerHTML = `Min execCnt: ${minWeight}`;
+        debug_criteria.innerHTML = `Categorize Criteria: ${criteria.map(
+            (x) => `${x}`
+        )}`;
     }
 
     gOrbit.dataList.forEach((element) => {
         const target = orbit.querySelector(`#${BASE_CLASS}-${element.name}`);
         const targetItem = target.querySelector(`.${gOrbit.class.item}`);
         const weight = element.execCnt;
+        orbitClearClass(targetItem, `${BASE_CLASS}-item-`);
 
-        Array.from(targetItem.classList)
-            .filter((x) => /^orbit-item-/.test(x))
-            .map((x) => targetItem.classList.remove(x));
-
-        if (weight <= criteria[0]) {
-            targetItem.classList.add(`${gOrbit.class.item}-xs`);
-        } else if (weight <= criteria[1]) {
-            targetItem.classList.add(`${gOrbit.class.item}-sm`);
-        } else if (weight <= criteria[2]) {
-            targetItem.classList.add(`${gOrbit.class.item}-md`);
-        } else {
-            targetItem.classList.add(`${gOrbit.class.item}-lg`);
+        for (let [index, value] of criteria.entries()) {
+            if (weight <= value) {
+                targetItem.classList.add(
+                    `${gOrbit.class.item}-${CATEGORIES[index]}`
+                );
+                break;
+            }
         }
 
         const item = target.querySelector(`.${gOrbit.class.status}`);
@@ -51,34 +57,24 @@ export const orbitSetDepth = () => {
             if (BINDING_SPECIFY[key]) {
                 const bindingClass = `${BASE_CLASS}-${BINDING_SPECIFY[key]}`;
                 binding = target.querySelector(`.${bindingClass}`);
-
-                Array.from(binding.classList)
-                    .filter((x) => /^orbit-specify-/.test(x))
-                    .map((x) => binding.classList.remove(x));
-
+                orbitClearClass(binding, `${BASE_CLASS}-specify-`);
                 statusClassName = (key, stat) =>
-                    `orbit-specify-${key}-${map[key][stat]}`;
+                    `${BASE_CLASS}-specify-${key}-${map[key][stat]}`;
             } else {
                 const keyClassName = `${BASE_CLASS}-key-${key}`;
+                orbitClearClass(item, `${BASE_CLASS}-value-`);
                 binding = item.querySelector(`.${keyClassName}`);
-
-                Array.from(item.classList)
-                    .filter((x) => /^orbit-value-/.test(x))
-                    .map((x) => item.classList.remove(x));
-
-                if (!binding) {
+                if (binding) {
+                    orbitClearClass(binding, `${BASE_CLASS}-value-`);
+                } else {
                     binding = document.createElement("div");
                     binding.classList.add(keyClassName);
                     item.appendChild(binding);
                     binding = item.querySelector(`.${keyClassName}`);
-                } else {
-                    Array.from(binding.classList)
-                        .filter((x) => /^orbit-value-/.test(x))
-                        .map((x) => binding.classList.remove(x));
                 }
 
                 statusClassName = (key, stat) =>
-                    `orbit-value-${map[key][stat]}`;
+                    `${BASE_CLASS}-value-${map[key][stat]}`;
             }
             Object.keys(map[key])
                 .filter((x) => element[key] == x)
@@ -87,9 +83,7 @@ export const orbitSetDepth = () => {
                 });
         });
 
-        Array.from(target.classList)
-            .filter((x) => /^orbit-depth-/.test(x))
-            .map((x) => target.classList.remove(x));
+        orbitClearClass(target, `${BASE_CLASS}-depth-`);
 
         target.classList.add(`${BASE_CLASS}-depth-${depth}`);
         if (idx++ == depth * BASE_AMOUNT) {
@@ -97,7 +91,11 @@ export const orbitSetDepth = () => {
             depth++;
         }
     });
-    DEBUG && console.log(">> Setting Complete");
+
+    if (DEBUG) {
+        console.log(">> Setting Complete");
+        debug_depth.innerHTML = `Outermost Depth: ${depth}`;
+    }
 
     return depth;
 };

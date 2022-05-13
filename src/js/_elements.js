@@ -17,13 +17,12 @@ export const createElement = () => {
         { name: "layer" },
         { name: "alert", class: "placing" },
         { name: "debug", tag: "ul" },
-        { name: "dtitle", tag: "h5", parent: "debug" },
-        { name: "dmin", tag: "li", parent: "debug" },
-        { name: "dmax", tag: "li", parent: "debug" },
-        { name: "dlv1", tag: "li", parent: "debug" },
-        { name: "dlv2", tag: "li", parent: "debug" },
-        { name: "dlv3", tag: "li", parent: "debug" },
-        { name: "damount", tag: "li", parent: "debug" },
+        { name: "debug_title", tag: "h5", parent: "debug" },
+        { name: "debug_min", tag: "li", parent: "debug" },
+        { name: "debug_max", tag: "li", parent: "debug" },
+        { name: "debug_criteria", tag: "li", parent: "debug" },
+        { name: "debug_amount", tag: "li", parent: "debug" },
+        { name: "debug_depth", tag: "li", parent: "debug" },
     ];
 
     elements.map((x) => {
@@ -40,7 +39,7 @@ export const createElement = () => {
     gOrbit.class.inner = `${BASE_CLASS}-inner`;
     const innerClassQuery = `.${BASE_CLASS} .${gOrbit.class.inner}`;
     gOrbit.dom.inner = document.querySelector(innerClassQuery);
-    gOrbit.dom.dtitle.innerHTML = "DEBUG MODE";
+    gOrbit.dom.debug_title.innerHTML = "DEBUG MODE";
 
     orbitScroll();
 
