@@ -16,7 +16,7 @@ export const orbitUpdate = async () => {
         fetchData = await orbitGetData(USE_FETCH, FETCH_HREF);
         orbitRemoveError();
         DEBUG && console.log(">> Fetching Complete");
-        debug_amount.innerHTML = `Amount: ${fetchData.length}`;
+        DEBUG && (debug_amount.innerHTML = `Amount: ${fetchData.length}`);
     } catch (err) {
         orbitPrintError(err);
         DEBUG && console.log(">> Error occurred on Fetching\n\n");

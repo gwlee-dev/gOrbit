@@ -66,6 +66,9 @@
 
     	// use_fetch가 false일 경우 불러올 데이터 (이후 fetch 실행 시 갱신됨)
     	dataList: {},
+
+    	// 개체 내부에 표시할 내용 선택 (생략시 name)
+    	contents_field: "alias",
     });
 
     // init 함수 실행 이후 옵션 override 필요시:
