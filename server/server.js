@@ -25,7 +25,12 @@ const fakeDB = () => {
     innerData.splice(target, 10);
     innerData.forEach((obj) => {
         Object.keys(obj).forEach((field) => {
-            if (field != "name" && field != "server" && field != "execCnt") {
+            if (
+                field != "name" &&
+                field != "server" &&
+                field != "execCnt" &&
+                field != "alias"
+            ) {
                 const randInt = Math.floor(Math.random() * 3);
                 if (randInt == 1) {
                     obj[field] = "CRITICAL";

@@ -5,7 +5,7 @@ import { orbitUpdate } from "./_update";
 
 export const orbitInitFunc = async (options) => {
     options.debug == true && console.log("[ Initializing ]");
-    importOptions(options);
+    await importOptions(options);
     createElement();
 
     const { DEBUG, BASE_CLASS, USE_FETCH, UPDATE_INTERVAL } = gOrbit.options;
