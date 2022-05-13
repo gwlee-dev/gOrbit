@@ -1,5 +1,8 @@
 # orbit_dashboard
 
+![captured](https://user-images.githubusercontent.com/81747455/168238002-2b384dbe-895c-47c8-a913-ed87b2389f25.gif)
+
+
     // gOrbit.listen({object}) => 함수 실행시마다 object의 내용을 데이터로 가져오고 업데이트 수행
     // gOrbit.update() => update_interval과 관계없이 즉시 업데이트 수행
     // gOrbit.dataList => 현재 갖고있는 데이터의 목록 array (fetch 결과가 저장됨, 내부에서 각 interval 마다 접근)
