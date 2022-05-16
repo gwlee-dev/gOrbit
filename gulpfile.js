@@ -32,7 +32,7 @@ const PATH = {
     },
     assets: {
         src: `${SRC}/assets/**/*`,
-        dest: `${DEST}`,
+        dest: `static`,
     },
 };
 

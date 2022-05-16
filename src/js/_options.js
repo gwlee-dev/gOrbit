@@ -29,7 +29,7 @@ export const defaultOptions = {
             ABNORMAL: "abnormal",
         },
     },
-    contents_field: "name",
+    CONTENTS_FIELD: "name",
 };
 
 export const importOptions = (options) => {

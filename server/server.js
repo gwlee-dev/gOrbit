@@ -12,6 +12,7 @@ app.set("views", process.cwd() + "/server/views");
 app.use(morgan("dev"));
 app.use(express.urlencoded({ extended: true }));
 app.use("/assets", express.static("dist"));
+app.use("/static", express.static("static"));
 
 const fakeDB = () => {
     const dataFile = fs.readFileSync(
